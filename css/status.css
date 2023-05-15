@@ -1,0 +1,48 @@
+ 
+   @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+ ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+font-family: 'Roboto', sans-serif;
+}
+
+li {
+float: left;
+
+}
+.icon{
+float: right;
+}
+li a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+li a:hover {
+  background-color: #9d8189;;
+ }
+section{
+margin: 50px;
+}
+
+button{
+
+background:#9d8189;
+
+border:none;
+display: inline-block;
+border-width: 0;
+box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 7px 0;
+cursor: pointer;
+font-family: Arial, sans-serif;
+font-size: 1em;
+height: 50px;
+padding: 0 25px;
+border-radius: 50%;
+transition: all 200ms;
+}

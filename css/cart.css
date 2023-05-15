@@ -1,0 +1,78 @@
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+  
+  .container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .container * {
+    box-sizing: border-box;
+  }
+  
+  .flex-outer,
+  .flex-inner {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .flex-outer {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  
+  
+  .flex-inner {
+    padding: 0 8px;
+    justify-content: space-between;  
+  }
+  
+  .flex-outer > li:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  
+  
+  .flex-outer > li > label,
+  .flex-outer li p {
+    flex: 1 0 120px;
+    max-width: 220px;
+  }
+  
+  .flex-outer > li > label + *,
+  .flex-inner {
+    flex: 1 0 220px;
+  }
+  
+ 
+  
+  .flex-outer  button {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    background: #333;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 2px;
+  }
+  
+  
+  
+
+button{
+background:#9d8189;
+border:none;
+display: inline-block;
+border-width: 0;
+box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 7px 0;
+cursor: pointer;
+font-family: Arial, sans-serif;
+font-size: 1em;
+height: 50px;
+padding: 0 25px;
+border-radius: 50%;
+transition: all 200ms;
+}
