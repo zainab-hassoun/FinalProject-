@@ -36,6 +36,7 @@ if(mysqli_num_rows($check_product)){
     $ACart=1;
     $_SESSION['q']=$row['amount'];
     if($_SESSION['q']==0){
+        header('location:discount.php');
       echo '<script>alert("sold out!")</script>';
     }
     else{

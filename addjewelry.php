@@ -59,21 +59,17 @@ else{
   }
 </style>
 <body>
-<!-- <center>
-<a href="manger.php"><img src="image/img10.png" width="90px"  style="padding:px; margin:1px" /></a>
-</center> -->
-
-  <h1 align="center" >Please enter details the jewerly you want to ADD</h1>
+  <h1 align="center" >Please enter the details of the jewelry you want to add</h1>
 <div class="container">
   <form action="" method="POST">
     <ul class="flex-outer">
       <li>
-        <label for="first-name">Type jewerly</label>
+        <label for="first-name">Type Jewelry</label>
         <input type="text"  name="type" placeholder="Enter The type" autocmopleta="off">
       </li>
       <li>
-        <label for="phone">Number jewerly</label>
-        <input type="number"  name="jewNum" placeholder="Enter Number the jewerly" autocmopleta="off">
+        <label for="phone">Number Jewelry</label>
+        <input type="number"  name="jewNum" placeholder="Enter Number the jewelry" autocmopleta="off">
       </li>
       <li>
         <label for="phone"> Price</label>
@@ -88,7 +84,7 @@ else{
         <input name="quantity" placeholder="quantity" autocmopleta="off">
       </li>
       <li>
-      <input type="submit" name="submit" value="ADD New jewerly" >
+      <input type="submit" name="submit" value="ADD New Jewelry" >
       </li>
       
       <button ><a href="manger.php" style="color:#9d8189">Log Out</a></button>

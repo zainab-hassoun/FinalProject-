@@ -40,14 +40,14 @@
   <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
   <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="login.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
   <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="heart.php" ><i class="fa-regular fa-heart"></i></a></li> 
-  <span class='badge badge-warning'>
+  <span >
 <li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
 
     <?php
-        $ss = $_SESSION['email'];
+     session_start();
         $count = 0;
         $con = mysqli_connect("localhost", "root", "1234", "loginproject");
-
+        $ss = $_SESSION['email'];
         if ($con) {
             $result = mysqli_query($con, "SELECT * FROM addtocart WHERE user_id='$ss'");
 

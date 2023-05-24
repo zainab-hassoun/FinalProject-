@@ -96,12 +96,12 @@ if(isset($_POST['submit'])){
     width: 500px;
     height:700px;
     padding: 25px;
-    margin: 25px auto 0;
+    margin: 50px auto 0;
     
     box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
   }
   .wrapper h2{
-    background-color:;
+   
     color: #9d8189;
     font-size: 24px;
     padding: 10px;
@@ -109,27 +109,31 @@ if(isset($_POST['submit'])){
     text-align: center;
     border: 3px dotted #9d8189;
   }
-  h4{
-    padding-bottom: 2px;
-    color: #9d8189;
-  }
-  .input-group{
-    margin-bottom: 8px;
-    width: 90%;
-    position: relative;
-    display: flex;
-    
-    flex-direction: row;
-    padding: 2px ;
-  }
-  .input-box{
-    width: 100%;
-    margin-right: 12px;
-    position: relative;
-  }
-  .input-box:last-child{
-    margin-right: 0;
-  }
+  
+  h4 {
+            padding-bottom: 2px;
+            color: #9d8189;
+        }
+
+        .input-group {
+            margin-bottom: 8px;
+            width: 90%;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            padding: 2px;
+        }
+
+        .input-box {
+            width: 100%;
+            margin-right: 12px;
+            position: relative;
+        }
+
+        .input-box:last-child {
+            margin-right: 0;
+        }
+
   .name{
     padding: 14px 10px 10px 100px;
     width: 100%;
@@ -240,6 +244,9 @@ if(isset($_POST['submit'])){
   section{
     margin: 50px;
     }
+    .aa{
+    margin: 10px;
+    }
 </style>
 <!DOCTYPE html>
 <html lang="en">
@@ -310,14 +317,14 @@ if(isset($_POST['submit'])){
                 </div>
             </div>
             <div class="input-group">
-                <div class="input-box">
+                <div >
                     <h4>Payment Details</h4>
-                    <input type="radio" name="pay" id="bc1" checked class="radio" name="CreditCard">
+                    <input type="radio" name="pay" id="bc1" checked class="aa" name="CreditCard">
                     <label for="bc1"><span><i class="fa fa-cc-visa"></i> Credit Card</span></label>
-                    <input type="radio" name="pay" id="bc2" class="radio" name="Paypal">
+                    <input type="radio" name="pay" id="bc2" class="aa" name="Paypal">
                     <label for="bc2"><span><i class="fa fa-cc-paypal"></i> Paypal</span></label>
                 </div>
-            </div>
+            </div><br/>
             <div class="input-group">
                 <div class="input-box">
                     <input type="tel" placeholder="Card Number" name="cardnumber" required class="name">

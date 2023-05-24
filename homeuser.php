@@ -8,15 +8,15 @@
         
 <?php 
  session_start();
-
-//  $con=mysqli_connect("localhost","root","1234","loginproject");
-// $user=$_SESSION['email'];
-// $sql="SELECT * FROM user where Username='$user'";
-// $result=mysqli_query($con,$sql);
-// $row=mysqli_fetch_assoc($result);
-// if($row['isblocked']==1)
-//  header('location:pass_ran.php');
+ if (isset($_POST['logout'])) {
+    // מחיקת הפרטים הרלוונטיים מהסשן
+    unset($_SESSION['username']);
+    // ניתוב או הצגת הודעת התנתקות למשתמש
+    header('Location: login.php');
+    exit();
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -56,7 +56,7 @@
   <li style="padding:10px; "><a style="color:#9d8189;font-family:serif;" href="homeuser.php">Home</a></li>
   <li style="padding:10px;"><a style="color:#9d8189;font-family: serif;" href="contact.php">Contact</a></li> 
   <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
-  <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="login.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
+  <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="logout.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
   <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="heart.php" ><i class="fa-regular fa-heart"></i></a></li> 
   <span class='badge '>
 <li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
@@ -223,7 +223,7 @@
         <div class="design-item">
                 <div class="design-img">
                 <div><a href="madehand.php"><img src="https://cdn.shopify.com/s/files/1/0525/9857/1167/articles/Is-Handmade-Jewelry-Better_1024x1024.jpg?v=1623200205" width="260" height="260" /></div>
-                <span>Made <br> Hand</span>
+                <span>Hand <br>Made </span>
         </div>
         </div>
     </div>

@@ -33,7 +33,8 @@ if(mysqli_num_rows($check_product)){
     $ACart=1;
     $_SESSION['q']=$row['amount'];
     if($_SESSION['q']==0){
-      echo '<script>alert("sold out!")</script>';
+        header('location:anklet.php');
+      //echo '<script>alert("sold out!")</script>';
     }
     else{
     // check if the product already exists in the cart

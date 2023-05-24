@@ -53,35 +53,35 @@ transition: all 200ms;
 <body>
 <br>
   <center>
-		<h1 align="center">Welcome To My Jewelrys</h1>
+		
 <div >
 <form action="addjewelry.php">
-	<input type="submit" value="If you wan't to add  jewerlys  click here">
+	<input type="submit" value="Add Jewelry ">
  </form>
 </div>
 <div>
 <form action="productmanger.php">
-	<input type="submit" value="If you wan't to remove jewerlys And Update click here">
+	<input type="submit" value=" Remove Jewelries And Update ">
  </form>
 </div>
 <div>
 <form action="addmangers.php">
-	<input type="submit" value="If you wan't add mangers click here">
+	<input type="submit" value="Add Managers ">
  </form>
 </div>
 <div>
 <form action="status.php">
-	<input type="submit" value="If you wan't status click here">
+	<input type="submit" value="Status">
  </form>
  </div>
 <div>
  <form action="usershows.php">
-	<input type="submit" value="If you wan't users click here">
+	<input type="submit" value="Users">
  </form>
  </div>
  <div>
  <form action="mangersshows.php">
-	<input type="submit" value="If you wan't mangers click here">
+	<input type="submit" value="Managers">
  </form>
 </div>
 </center>

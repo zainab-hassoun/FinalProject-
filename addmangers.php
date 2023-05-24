@@ -131,7 +131,7 @@ else{
 </style>
 <body>
 
-<h1 align="center" >Please enter details the manager you want to ADD</h1>
+<h1 align="center" >Please enter the details of the manager you want to add</h1>
 <div class="container">
   <form action="" method="post">
     <ul class="flex-outer">

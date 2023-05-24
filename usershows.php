@@ -39,6 +39,62 @@
         border-radius: 25%;
         margin-left: 640px;
     }
+    
+.card-body {
+    padding: 20px;
+  
+}
+
+.card-title {
+    font-size: 18px;
+    
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 10px;
+}
+
+.btn-primary, .btn-danger {
+    border-radius: 20px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.btn1{
+    width: 15%;
+    border-radius: 20px;
+  background-color: #f0f8ff;
+  
+  padding: 10px 14px ;
+  margin: 20px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.card-text{
+    font-family: "Roboto", sans-serif;
+}
 </style>
       	
 <section>
@@ -51,7 +107,7 @@
   <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
   <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="login.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
   <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="heart.php" ><i class="fa-regular fa-heart"></i></a></li> 
-  <span class='badge '>
+  <span >
 <li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
 
     <?php
@@ -82,19 +138,11 @@
 </section>
         
         <div class="container">
-            <button class="btn btn-danger my-5"><a href="manger.php" class="text-align">
+            <button class="btn1"><a href="manger.php" class="text-align">
                GO BACK</a></button>
-                <table class="table">
-             <thead>
-    <tr>
-      <th scope="col">email</th>
-     
-      <th scope="col">password</th>
-       <th scope="col">phone</th>
-      <th scope="col">Isblocked</th>
-    </tr>
-  </thead>
-  <tbody>
+               <div class="container">
+  <div class="row">       
+          
   <?php
   $sql="SELECT * FROM `user`";
   $result=mysqli_query($con,$sql);
@@ -106,20 +154,27 @@ while($row=mysqli_fetch_assoc($result)){
   $phone=$row['phone'];
   $isblock=$row['isblocked'];
  echo'
- <tr>
- <th scope="row">'.$name.'</th>
- <td>'.$password.'</td>
 
- <td>'.$phone.'</td>
- <td>'.$isblock.'</td>
-</tr>
+ <div class="col-md-3">
+     <div class="card mb-4">
+         <div class="card-body">
+             <h5 class="card-title">UserName:'.$name.'</h5>
+             <br/>
+             <p class="card-text">Phone: '.$phone.'</p>
+             <p class="card-text">Password: '.$password.'</p>
+             <p class="card-text">Isbloked: '.$isblock.'</p>
+           
+         </div>
+     </div>
+ </div>
  ';
-}
-  }  
+  }
+}  
   ?>
+   </div>
+ </div>
  
-   </tbody>
-</table>
+   
         </div>
     </body>
 </html>

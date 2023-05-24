@@ -194,7 +194,7 @@ while($row=mysqli_fetch_assoc($result1)){
         $currentQuantity = isset($_POST['update_qnt']) ? $_POST['update_qnt'] : $initialQuantity;
         $updatedQuantity = $currentQuantity + 10;
         ?>
-      <h5>This product`s is sold has a package of 10 items</h5>
+      <h5>This product is sold has a package of 10 items</h5>
         <!-- <input type="number" name="update_qnt" style="height:40px" value="<?php //echo $currentQuantity; ?>" min="10" max="<?php echo $row['amount']; ?>" class="input2" /> -->
         <!-- <input type="hidden" name="id" value="<?php //echo $row['id']; ?>" />
         <input type="submit" name="update" value="Update" class="input1" /><br> -->
