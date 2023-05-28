@@ -232,6 +232,11 @@ if (mysqli_num_rows($result) > 0) {
             <div class="col-sm-6">
                 <div class="card-body">
                     <img src="<?php echo $row['image']; ?>" alt="" class="img" id="mainImage">
+                    <!-- <a href="inserttocart.php?id=<?php echo  $imageId  ?>" style="color:#f5ebe0;">
+                    <button type="button" id="productid" name="addtocart" style="color:#f5ebe0; margin:30px ; width:150px">Add To Cart</button>  -->
+        <!-- <p class="card-text" >ID: <?php //echo $row['id']?></p><br> -->
+
+</a>       
                 </div>
             </div>
 
@@ -239,12 +244,14 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="card-body">
                     <h3 class="card-title" style="color:#9d8189;font-family: serif;">Type: <?php echo $row['name_p']; ?></h3><br>
                     <p class="card-text"><h3 style="color:#9d8189;font-family: serif;"> Price: <span id="productPrice"><?php echo $row['price']; ?></span>$</h6></p><br>
-                    <p class="card-text">ID: <?php echo $id; ?></p><br>
+                    <p class="card-text" id="productid">ID: <?php echo $row['id']?></p><br>
+
                     <?php
                     $id = $_GET['id'];
                     $con = mysqli_connect("localhost", "root", "1234", "loginproject");
                     $sql1 = "SELECT * FROM `tblproduct` WHERE id = $id";
                     $result2 = mysqli_query($con, $sql1);
+                 
 
                     while ($innerRow = mysqli_fetch_array($result2)) {
                         if ($innerRow['type'] == '1') {
@@ -257,17 +264,19 @@ if (mysqli_num_rows($result) > 0) {
                                 $n1 = rand(0, count($images) - 1);
                                 $n2 = ($n1 + 1) % count($images);
                                 $n3 = ($n2 + 1) % count($images);
+                             
                                 return array($images[$n1]['image'], $images[$n2]['image'], $images[$n3]['image']);
                             }
 
                             $_SESSION['randimages'] = randomImage($products);
                             $imageUrls = $_SESSION['randimages'];
-                                  
+                           
                             foreach ($imageUrls as $index => $imageUrl) {
-                                echo "<a href='" . $innerRow['image'] . "' class='image-link'  data-index='$index' data-price='" . $products[$index]['price'] . "'>
+                               
+                                echo "<a href='" . $innerRow['image'] . "' class='image-link'  data-index='$index' data-price='" . $products[$index]['price'] .  "' data-id='" . $products[$index]['id'] . "'>
                                    <img src='$imageUrl' alt='Product Image' width='150px'></a>";
-                            }
-                        } elseif ($innerRow['type'] == '2') {
+                            
+                        } }elseif ($innerRow['type'] == '2') {
                             $sql3 = "SELECT * FROM `tblproduct` WHERE type = '2'  and id != $id";
                             $result3 = mysqli_query($con, $sql3);
                             $row3 = mysqli_fetch_array($result3);
@@ -285,7 +294,7 @@ if (mysqli_num_rows($result) > 0) {
                             $imageUrls = $_SESSION['randimages'];
 
                             foreach ($imageUrls as $index => $imageUrl) {
-                                echo "<a href='" . $innerRow['image'] . "' class='image-link' data-index='$index' data-price='" . $products1[$index]['price'] . "'>
+                                echo "<a href='" . $innerRow['image'] . "' class='image-link' data-index='$index' data-price='" . $products1[$index]['price'] . "' data-id='" . $products1[$index]['id'] . "'>
                                 <img src='$imageUrl' alt='Product Image' width='140px'></a>";
                             }
                         } elseif ($innerRow['type'] == '3') {
@@ -306,7 +315,8 @@ if (mysqli_num_rows($result) > 0) {
                             $imageUrls = $_SESSION['randimages'];
 
                             foreach ($imageUrls as $index => $imageUrl) {
-                                echo "<a href='" . $innerRow['image'] . "' class='image-link' data-index='$index' data-price='" . $products4[$index]['price'] . "'>
+                                
+                                echo "<a href='" . $imageUrl . "' class='image-link' data-index='$index' data-price='" . $products4[$index]['price'] ."' data-id='" . $products4[$index]['id'] . "'>
                                 <img src='$imageUrl' alt='Product Image' width='140px'></a>";
                             }
                         }
@@ -317,62 +327,58 @@ if (mysqli_num_rows($result) > 0) {
     <div class="card-body">
         <a href="cart.php" style="color:#f5ebe0;"><button type="button" name="addtocart">Back</a></button>
         <br/>
-        <a href="inserttocart.php?id=<?php echo $id ?>&image=<?php echo $imageUrl; ?>" style="color:#f5ebe0;">
-            <br><button type="button" name="addtocart">Add To Cart</button> 
-        </a>
+        <a href="inserttocart.php?id=<?php echo  $imageId  ?>" style="color:#f5ebe0;">
+        <br><button type="button" id="productid" name="addtocart">Add To Cart</button> 
+        <!-- <p class="card-text" >ID: <?php echo $row['id']?></p><br> -->
+
+</a>
     </div>
 </div>
             </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         
-        <script>
-            $(document).ready(function() {
-                var clicked = false; // Track if the first image has been clicked
+<script>
+$(document).ready(function() {
+    var isFirstClick = true;
+    var prevImageUrl = "";
 
-                $(".image-link").click(function(e) {
-                    e.preventDefault(); // Prevent the default link behavior
+    $(".image-link").click(function(e) {
+        e.preventDefault();
 
-                    if (!clicked) {
-                        clicked = true;
-                        return; // Ignore the first image click
-                    }
+        if (isFirstClick) {
+            isFirstClick = false;
+            prevImageUrl = $(this).find("img").attr("src");
 
-                    var imageUrl = $(this).find("img").attr("src"); // Get the current image URL
-                    var id = "<?php echo $id; ?>"; // Get the product ID
-                    var price = $(this).data("price"); // Get the product price from the data attribute
-                    var price = $(this).data("id"); 
-                    // Update the main image source
-                    $("#mainImage").attr("src", imageUrl);
-               
-                    // Update the product price
-                    $("#productPrice").text(price);
-                    $("#productid").text(id);
-                    // Update the database with the new image URL and price
-                    $.ajax({
-                        url: "",
-                        type: "POST",
-                        data: {
-                            imageUrl: imageUrl,
-                            price: price,
-                            id: id
-                        },
-                        success: function(response) {
-                           
-                            // Handle the response from the server (if needed)
-                        },
-                        error: function(xhr, status, error) {
-                            // Handle errors (if any) 
-                            
-                            console.log(xhr.responseText);
-                        }
-                       
-                    });
-                  
-                });
-            });
-        </script>
+            var tempImageUrl = $("#mainImage").attr("src");
+            $("#mainImage").attr("src", prevImageUrl);
+            $(this).find("img").attr("src", tempImageUrl);
+            tempImageUrl = prevImageUrl;
+
+            var imageId = $(this).data("id");
+            $("#productid").text("ID: " + imageId);
+
+            var price = $(this).data("price");
+            $("#productPrice").text(price);
+        } else {
+            var imageUrl = $(this).find("img").attr("src");
+
+            $("#mainImage").attr("src", imageUrl);
+            $(this).find("img").attr("src", prevImageUrl);
+            prevImageUrl = imageUrl;
+
+            var imageId = $(this).data("id");
+            $("#productid").text("ID: " + imageId);
+
+            var price = $(this).data("price");
+            $("#productPrice").text(price);
+        }
+    });
+});
+</script>
+
 <?php
     }
 }
