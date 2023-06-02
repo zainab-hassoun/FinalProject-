@@ -2,6 +2,7 @@
 <?php
 session_start();
  $con=mysqli_connect("localhost","root","1234","loginproject");
+ if(isset($_SESSION['email'])){
  $user=$_SESSION['email']; 
  if(isset($_POST['remove'])){
  $user=$_SESSION['email']; 
@@ -11,6 +12,7 @@ session_start();
  }else{
      echo "Error deleting items from cart";
  }
+}
 }
 
 ?>
@@ -174,6 +176,7 @@ transition: all 200ms;
   <span class='badge '>
 <li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
     <?php
+      if(isset($_SESSION['email'])){
         $ss = $_SESSION['email'];
         $count = 0;
         $con = mysqli_connect("localhost", "root", "1234", "loginproject");
@@ -191,6 +194,7 @@ transition: all 200ms;
         } else {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
+        }
     ?>
     </i></a></li> 
 </span>
@@ -203,6 +207,7 @@ transition: all 200ms;
 
 <div class="row itemsBlock"  >
     <?php 
+     if(isset($_SESSION['email'])){
     $ss = $_SESSION['email'];
     $sumprice=0;
     $total=0;
@@ -247,6 +252,7 @@ transition: all 200ms;
    }
 
   }
+  
 
 ?>
 
@@ -260,7 +266,7 @@ transition: all 200ms;
 <br>
 <?php
 
-
+}
 ?>
 </form>
 

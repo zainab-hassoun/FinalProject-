@@ -192,7 +192,7 @@ transition: all 200ms;
     $sumprice=0;
     $total=0;
     $con=mysqli_connect("localhost","root","1234","loginproject");
-    $result = mysqli_query($con,"select * From addheart where user_id='$ss'");
+    $result = mysqli_query($con,"select * From addtoheart where user_id='$ss'");
  
     if(mysqli_num_rows( $result)>0){
     while($row = mysqli_fetch_array($result)) { 
@@ -200,22 +200,95 @@ transition: all 200ms;
      
       
         ?>
-      
-   
- <div class="col-3 col-3 col-3 col-3 ">
- <form action="" method="post">
-     <img src="<?php echo  $row['image'] ;?>" alt=""class="card-img-top">
-     <div class="card-body">
-    <h3 class="card-title" style="color:#9d8189;font-family: serif;"><?php echo $row['name']; ?></h3>
-    <p class="card-text" ><h6 style="color:#9d8189;font-family: serif;"> Price: <?php echo $row['price']?>$</h6></p>
-    <a href="testRemoveheart.php?id=<?php echo $row['id'];?> "style="color:#f5ebe0;"><button type="button" >Delete</a></button>
-        </div>
-     </div>
-  <?php
-   }}
+      <div class="col-3 col-3 col-3 col-3">
+  <form action="" method="post">
+    <img src="<?php echo $row['image']; ?>" alt="" class="card-img-top">
+    <div class="card-body">
+      <h3 class="card-title" style="color:#9d8189;font-family: serif;"><?php echo $row['name']; ?></h3>
+      <p class="card-text"><h6 style="color:#9d8189;font-family: serif;"> Price: <?php echo $row['price']?>$</h6></p>
+      <span class="heart-icon" tabindex="0" data-toggle="tooltip" title="Tooltip on top">
+        <a href="#" style="color:#9d8189;" onclick="toggleHeart(<?php echo $row['id']; ?>)">
+          <i class="far fa-heart" id="heart-icon-<?php echo $row['id']; ?>"></i>
+        </a>
+      </span>
+      <a href="#" style="color:#f5ebe0;" onclick="deleteProduct(<?php echo $row['id']; ?>); return false;">
+        <button type="button">Delete</button>
+      </a>
+    </div>
+  </form>
+</div>
 
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+
+<script>
+  function toggleHeart(productId) {
+    var heartIcon = document.getElementById("heart-icon-" + productId);
     
-?>
+    if (heartIcon.classList.contains("far")) {
+      // Add to heart
+      heartIcon.classList.remove("far");
+      heartIcon.classList.add("fas");
+      addToHeart(productId);
+    } else {
+      // Remove from heart
+      heartIcon.classList.remove("fas");
+      heartIcon.classList.add("far");
+      removeFromHeart(productId);
+    }
+  }
+  
+
+  
+  function removeFromHeart(productId) {
+    // Make an AJAX request to the server-side script to remove the product from the heart list
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "testRemoveheart.php?id=" + productId, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Request successful, do something if needed
+      }
+    };
+    xhr.send();
+    
+    // Remove heart status from local storage
+    localStorage.removeItem("heartStatus-" + productId);
+  }
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    var productId = <?php echo $row['id']; ?>;
+    var heartIcon = document.getElementById("heart-icon-" + productId);
+    
+    // Check heart status in local storage
+    var heartStatus = localStorage.getItem("heartStatus-" + productId);
+    
+    if (heartStatus === "fas") {
+      heartIcon.classList.remove("far");
+      heartIcon.classList.add("fas");
+    }
+  });
+  
+  function deleteProduct(productId) {
+    // Make an AJAX request to the server-side script to delete the product
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "testRemoveheart.php?id=" + productId, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Request successful, do something if needed
+        var heartIcon = document.getElementById("heart-icon-" + productId);
+        heartIcon.classList.remove("fas");
+        heartIcon.classList.add("far");
+        removeFromHeart(productId);
+        // Remove the product from the DOM
+        var productElement = document.querySelector("#heart-icon-" + productId).closest(".col-3");
+        productElement.parentNode.removeChild(productElement);
+      }
+    };
+    xhr.send();
+  }
+</script>
+
+<?php }
+} ?>
 
     </center>
     <section>

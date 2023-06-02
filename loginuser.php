@@ -54,7 +54,7 @@ if (!$con) {
                             required="required">
                     </div>
                     <br>
-                    <a href="forget password.php" class="fo">forgot password</a>
+                    <a href="forget password.php" class="auth-link" style="color:#9d8189">forgot password</a>
                     <button class="button login__submit" name="submit">
                         <span class="button__text" style="	font-family: cursive;">
                             Log In

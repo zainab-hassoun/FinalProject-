@@ -62,6 +62,7 @@
 <li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
 
     <?php
+    if(isset($_SESSION['email'])){
         $ss = $_SESSION['email'];
         $count = 0;
         $con = mysqli_connect( "localhost", "root", "1234", "loginproject");
@@ -82,6 +83,7 @@
         } else {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
+    }
     ?>
     </i></a></li> 
 </span>

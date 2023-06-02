@@ -118,6 +118,25 @@ transition: all 200ms;
         border-radius: 25%;
         margin-left: 640px;
     }
+    
+.image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color:#ffb09c;
+  padding: 10px;
+  font-weight: bold;
+}
 </style>
 <body>
 <br>
@@ -159,7 +178,7 @@ transition: all 200ms;
 <br>
 <div class="row itemsBlock">
  <?php
- $sql="SELECT * FROM `madehand`";
+ $sql="SELECT * FROM `handmade`";
  $result1=mysqli_query($con,$sql);
  if(mysqli_num_rows( $result1)>0){
 while($row=mysqli_fetch_assoc($result1)){
@@ -172,14 +191,77 @@ while($row=mysqli_fetch_assoc($result1)){
  <form action="" method="post">
  <div class="image-container">
       <img class="card-img-top" src="<?php echo $img?>" name="image">
-      <span class="heart-icon" tabindex="0" data-toggle="tooltip" title="Tooltip on top"><a href="insertheartmadehand.php?id=<?php echo $row['id']?>" style="color:black"><i class="far fa-heart"></i></a></span>
-      <script src="icon.js"></script>
+      <span class="heart-icon" tabindex="0" data-toggle="tooltip" title="Tooltip on top">
+  <a href="#" style="color:#9d8189;" onclick="toggleHeart(<?php echo $row['id']; ?>)">
+    <i class="far fa-heart" id="heart-icon-<?php echo $row['id']; ?>"></i>
+  </a>
+</span>
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+<script>
+function toggleHeart(productId) {
+  var heartIcon = document.getElementById("heart-icon-" + productId);
+  
+  if (heartIcon.classList.contains("far")) {
+    // Add to heart
+    heartIcon.classList.remove("far");
+    heartIcon.classList.add("fas");
+    addToHeart(productId);
+  } else {
+    // Remove from heart
+    heartIcon.classList.remove("fas");
+    heartIcon.classList.add("far");
+    removeFromHeart(productId);
+  }
+}
+
+function addToHeart(productId) {
+  // Make an AJAX request to the server-side script to add the product to the heart list
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "insertheartmadehand.php?id=" + productId, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      // Request successful, do something if needed
+    }
+  };
+  xhr.send();
+  
+  // Store heart status in local storage
+  localStorage.setItem("heartStatus-" + productId, "fas");
+}
+
+function removeFromHeart(productId) {
+  // Make an AJAX request to the server-side script to remove the product from the heart list
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "testRemoveheart.php?id=" + productId, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      // Request successful, do something if needed
+    }
+  };
+  xhr.send();
+  
+  // Remove heart status from local storage
+  localStorage.removeItem("heartStatus-" + productId);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var productId = <?php echo $row['id']; ?>;
+  var heartIcon = document.getElementById("heart-icon-" + productId);
+  
+  // Check heart status in local storage
+  var heartStatus = localStorage.getItem("heartStatus-" + productId);
+  
+  if (heartStatus === "fas") {
+    heartIcon.classList.remove("far");
+    heartIcon.classList.add("fas");
+  }
+  localStorage.removeItem("heartStatus-" +  $_SESSION['deletedProductId'] );
+});
+</script>
 </div>
 <?php
     if($row['amount']==0){
-     echo '<div><h2 style="color:red; text-align:center; font-family:Fantasy; ">
-      SOLD OUT
-      </h2></div>';
+      echo '<div class="image-caption">SOLD OUT</div>';
     }
     ?>
      <div class="card-body">

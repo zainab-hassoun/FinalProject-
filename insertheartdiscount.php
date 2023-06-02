@@ -42,17 +42,19 @@ if(mysqli_num_rows($check_product)){
     $ACart=1;
     $_SESSION['q']=$row['amount'];
     if($_SESSION['q']==0){
-      echo '<script>alert("sold out!")</script>';
-    }
+        
+        echo '<script>alert("sold out!")</script>';
+        header('location:discount.php');
+      }
     else{
     // check if the product already exists in the cart
-    $check_cart = mysqli_query($con,"SELECT * FROM addheart WHERE id = '$id' AND user_id='$username' ");
+    $check_cart = mysqli_query($con,"SELECT * FROM addtoheart WHERE id = '$id' AND user_id='$username' ");
     if(mysqli_num_rows($check_cart)>0){
         // if the product already exists, update the quantity
        while( $row= mysqli_fetch_array($check_cart) ){
         $quantity = $row['quantity'] + 1;
         if($quantity<=$_SESSION['q']){
-        $update_quantity = mysqli_query($con,"UPDATE addheart SET quantity = '$quantity' WHERE id = '$id' AND user_id='$username'");
+        $update_quantity = mysqli_query($con,"UPDATE addtoheart SET quantity = '$quantity' WHERE id = '$id' AND user_id='$username'");
         }
         else{
             echo '<script>alert("Error the quantity is finshed !")</script>';
@@ -60,7 +62,7 @@ if(mysqli_num_rows($check_product)){
 
     }
      }else{
-        $sql="INSERT INTO addheart VALUES('$ICart','$NCart','$PCart','1','$ImCart','$username')";
+        $sql="INSERT INTO addtoheart VALUES('$ICart','$NCart','$PCart','1','$ImCart','$username')";
         $result2=mysqli_query($con,$sql);
        
       }
