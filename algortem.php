@@ -215,154 +215,146 @@ $con = mysqli_connect("localhost", "root", "1234", "loginproject");
 
 $result = mysqli_query($con, "SELECT * FROM tblproduct WHERE id='$id'");
 
-
 if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_array($result)) {
-        ?>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card-body">
-                    <img src="<?php echo $row['image']; ?>" alt="" class="img" id="mainImage">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card-body">
-                    <h3 class="card-title" style="color:#9d8189;font-family: serif;" > Name: <span id="productname"> <?php echo $row['name']; ?></span></h3><br>
-                    <p class="card-text"><h3 style="color:#9d8189;font-family: serif;"> Price: <span id="productPrice"><?php echo $row['price']; ?></span>$</h3></p><br>
-                    <p class="card-text" id="productid">ID: <?php echo $row['id']?></p><br>
-
-                    <?php
-                    $id = $_GET['id'];
-                    $con = mysqli_connect("localhost", "root", "1234", "loginproject");
-                    $sql1 = "SELECT * FROM `tblproduct` WHERE id = $id";
-                    $result2 = mysqli_query($con, $sql1);
-
-                    while ($innerRow = mysqli_fetch_array($result2)) {
-                        if ($innerRow['type'] == '1') {
-                            $sql2 = "SELECT * FROM `tblproduct` WHERE type = '1'  and id != $id";
-                            $result3 = mysqli_query($con, $sql2);
-                            $products = mysqli_fetch_all($result3, MYSQLI_ASSOC);
-
-                            function randomImage1($images)
-                            {
-                                $n1 = rand(0, count($images) - 1);
-                                $n2 = ($n1 + 1) % count($images);
-                                $n3 = ($n2 + 1) % count($images);
-                                
-                                return array($images[$n1]['image'], $images[$n2]['image'], $images[$n3]['image']);
-                            }
-
-                            $_SESSION['randimages1'] = randomImage1($products);
-                            $imageUrls1 = $_SESSION['randimages1'];
-                            
-                            foreach ($imageUrls1 as $index => $imageUrl) {
-                                echo "<a href='" . $innerRow['image'] . "' class='image-link'  data-index='$index' data-price='" . $products[$index]['price'] .  "'data-name='".$products[$index]['name']."' data-id='" . $products[$index]['id'] . "'>
-                                    <img src='$imageUrl' alt='Product Image' width='150px'></a>";
-                            }
-                        } elseif ($innerRow['type'] == '2') {
-                            $sql3 = "SELECT * FROM `tblproduct` WHERE type = '2'  and id != $id";
-                            $result4 = mysqli_query($con, $sql3);
-                            $products1 = mysqli_fetch_all($result4, MYSQLI_ASSOC);
-
-                            function randomImage2($images)
-                            {
-                                $n1 = rand(0, count($images) - 1);
-                                $n2 = ($n1 + 1) % count($images);
-                                $n3 = ($n2 + 1) % count($images);
-                                return array($images[$n1]['image'], $images[$n2]['image'], $images[$n3]['image']);
-                            }
-
-                            $_SESSION['randimages2'] = randomImage2($products1);
-                            $imageUrls2 = $_SESSION['randimages2'];
-
-                            foreach ($imageUrls2 as $index => $imageUrl) {
-                                echo "<a href='" . $innerRow['image'] . "' class='image-link' data-index='$index' data-price='" . $products1[$index]['price'] . "' data-name='".$products[$index]['name']."'data-id='" . $products1[$index]['id'] . "'>
-                                <img src='$imageUrl' alt='Product Image' width='140px'></a>";
-                            }
-                        } elseif ($innerRow['type'] == '3') {
-                            $sql4 = "SELECT * FROM `tblproduct` WHERE type = '3' and id != $id";
-                            $result5 = mysqli_query($con, $sql4);
-                            $products4 = mysqli_fetch_all($result5, MYSQLI_ASSOC);
-
-                            function randomImage3($images)
-                            {
-                                $n1 = rand(0, count($images) - 1);
-                                $n2 = ($n1 + 1) % count($images);
-                                $n3 = ($n2 + 1) % count($images);
-                                return array($images[$n1]['image'], $images[$n2]['image'], $images[$n3]['image']);
-                            }
-
-                            $_SESSION['randimages3'] = randomImage3($products4);
-                            $imageUrls3 = $_SESSION['randimages3'];
-
-                            foreach ($imageUrls3 as $index => $imageUrl) {
-                                echo "<a href='" . $innerRow['image'] . "' class='image-link' data-index='$index' data-price='" . $products4[$index]['price'] ."' data-name='".$products4[$index]['name']." 'data-id='" . $products4[$index]['id'] . "'>
-                                <img src='$imageUrl' alt='Product Image' width='140px'></a>";
-                            }
-                        }
-                    }
-                    ?>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card-body">
-                        <a href="cart.php" style="color:#f5ebe0;"><button type="button" name="addtocart">Back</a></button>
-                        <br/>
-                    </div>
-                </div>
+    $row = mysqli_fetch_array($result);
+    ?>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card-body">
+                <img src="<?php echo $row['image']; ?>" alt="" class="img" id="mainImage">
             </div>
         </div>
+        <div class="col-sm-6">
+            <div class="card-body">
+                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name']; ?></span></h3><br>
+                <p class="card-text"><h3 style="color:#9d8189;font-family: serif;">Price: <span id="productPrice"><?php echo $row['price']; ?></span>$</h3></p><br>
+                <p class="card-text" id="productid" data-id="<?php echo $row['id']; ?>"></p><br>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <?php
+                $type = $row['type'];
 
-        <script>
-            $(document).ready(function() {
-                var isFirstClick = true;
-                var prevImageUrl = "";
+                // Retrieve other products of the same type
+                $sql = "SELECT * FROM `tblproduct` WHERE type = '$type' AND id != '$id'";
+                $result = mysqli_query($con, $sql);
 
-                $(".image-link").click(function(e) {
-                    e.preventDefault();
+                if (mysqli_num_rows($result) > 0) {
+                    $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                    if (isFirstClick) {
-                        isFirstClick = false;
-                        prevImageUrl = $(this).find("img").attr("src");
+                    function getRandomProducts($products, $count) {
+                        $randomIndexes = array_rand($products, $count);
+                        $randomProducts = array();
 
-                        var tempImageUrl = $("#mainImage").attr("src");
-                        $("#mainImage").attr("src", prevImageUrl);
-                        $(this).find("img").attr("src", tempImageUrl);
-                        tempImageUrl = prevImageUrl;
+                        foreach ($randomIndexes as $index) {
+                            $randomProducts[] = $products[$index];
+                        }
 
-                        var imageId = $(this).data("id");
-                        $("#productid").text("ID: " + imageId);
-
-                        var price = $(this).data("price");
-                        $("#productPrice").text(price);
-                        var name= $(this).data("name");
-                        $("#productname").text(name);
-                    } else {
-                        var imageUrl = $(this).find("img").attr("src");
-
-                        $("#mainImage").attr("src", imageUrl);
-                        $(this).find("img").attr("src", prevImageUrl);
-                        prevImageUrl = imageUrl;
-
-                        var imageId = $(this).data("id");
-                        $("#productid").text("ID: " + imageId);
-
-                        var price = $(this).data("price");
-                        $("#productPrice").text(price);
-
-                        var name= $(this).data("name");
-                        $("#productname").text(name);
+                        return $randomProducts;
                     }
-                });
-              
-            });
-        </script>
 
-        <?php
-    }
+                    $randomProducts = getRandomProducts($products, 3);
+
+                    foreach ($randomProducts as $index => $product) {
+                        
+                        ?>
+                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name']; ?>" data-id="<?php echo $product['id']; ?>">
+                            <img src="<?php echo $product['image']; ?>" alt="Product Image" width="150px">
+                        </a>
+                      
+                   
+                        <?php
+                    }
+                }
+                $imageResult = mysqli_query($con, "SELECT image FROM tblproduct WHERE id='$id'");
+                if (mysqli_num_rows($imageResult) > 0) {
+                    $imageRow = mysqli_fetch_array($imageResult);
+                    $productImage = $imageRow['image'];
+                } else {
+                    $productImage = $row['image'];
+                }
+                ?>
+            </div>
+      
+
+        </div>
+        <div class="col-sm-4">
+                    <div class="card-body">
+                        <a href="cart.php" style="color:#f5ebe0;"><button type="button" name="addtocart">Back</a></button>
+                       
+                    </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="card-body">
+        <a href="cart.php" style="color:#f5ebe0;"><button type="button" name="addtocart">Back</a></button>
+        <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name']; ?>">
+            <button type="button" id="addToCartButton">Add To Cart</button>
+        </a>
+    </div>
+</div>
+
+<script>
+    const addToCartButton = document.getElementById('addToCartButton');
+    const selectedProductId = document.getElementById('productid').dataset.id;
+
+    addToCartButton.addEventListener('click', function(e) {
+
+  e.preventDefault();
+
+  if (selectedProductId) {
+    addToCart(selectedProductId);
+  } else {
+    alert("Please select a product.");
 }
+});
+
+function addToCart(productId) {
+  // Make an AJAX request to the server-side script to add the product to the cart
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "inserttocart.php?id=" + productId, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      // Request successful, do something if needed
+      alert("Product added to cart!");
+    }
+  };
+  xhr.send();
+}
+   
+</script>
+
+
+    <script>
+        const mainImage = document.getElementById('mainImage');
+        const productPrice = document.getElementById('productPrice');
+        const productID = document.getElementById('productid');
+        let prevImageUrl = "<?php echo $row['image']; ?>";
+
+        const imageLinks = document.querySelectorAll('.image-link');
+
+        imageLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const currentImageUrl = this.querySelector('img').getAttribute('src');
+                mainImage.src = currentImageUrl;
+                productPrice.textContent = this.dataset.price;
+                productID.dataset.id = this.dataset.id;
+
+                this.querySelector('img').setAttribute('src', prevImageUrl);
+                prevImageUrl = currentImageUrl;
+                
+            });
+            
+        });
+    </script>
+    <?php
+}
+
+mysqli_close($con);
 ?>
+
+
+
+
 
 <!-- ///////////////////////////////////////////////////////////necklace -->
 <?php
