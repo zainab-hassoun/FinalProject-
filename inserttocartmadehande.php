@@ -11,7 +11,7 @@ if(isset($_SESSION['email'])){
 }
 
 ?><?php  
-session_start();
+
 $con=mysqli_connect("localhost","root","1234","loginproject");
 //check if user is logged in
 if(isset($_SESSION['email'])){
@@ -23,7 +23,7 @@ if(isset($_SESSION['email'])){
 }
 $id = $_GET['id'];
 // Check if product id is valid
-$check_product = mysqli_query($con,"SELECT * FROM madehand WHERE id = '$id'");
+$check_product = mysqli_query($con,"SELECT * FROM handmade WHERE id = '$id'");
 if(mysqli_num_rows($check_product)){
     $row = mysqli_fetch_array($check_product);
     $ImCart=$row['image'];

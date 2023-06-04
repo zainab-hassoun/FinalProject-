@@ -151,6 +151,7 @@ transition: all 200ms;
 <li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
 
     <?php
+    if(isset($_SESSION['email'])){
         $ss = $_SESSION['email'];
         $count = 0;
         $con = mysqli_connect("localhost", "root", "1234", "loginproject");
@@ -171,6 +172,7 @@ transition: all 200ms;
         } else {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
+      }
     ?>
     </i></a></li> 
 </span>
@@ -217,7 +219,7 @@ function toggleHeart(productId) {
 function addToHeart(productId) {
   // Make an AJAX request to the server-side script to add the product to the heart list
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "insertheartmadehand.php?id=" + productId, true);
+  xhr.open("GET", "insertheartmadehande.php?id=" + productId, true);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       // Request successful, do something if needed
