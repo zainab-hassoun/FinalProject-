@@ -84,8 +84,9 @@
 .btn1{
     width: 15%;
     border-radius: 20px;
-  background-color: #f0f8ff;
-  
+ 
+  background-color: #f5ebe0;
+    color:#9d8189;
   padding: 10px 14px ;
   margin: 20px 0;
   border: none;
@@ -103,43 +104,14 @@
 <ul>
   <li><a href="homeuser.php"><img src="image/img231.jpg" width="120px"   /></a></li>
   <li style="padding:10px; "><a style="color:#9d8189;font-family:serif;" href="homeuser.php">Home</a></li>
-  <li style="padding:10px;"><a style="color:#9d8189;font-family: serif;" href="contact.php">Contact</a></li> 
   <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
   <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="login.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
-  <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="heart.php" ><i class="fa-regular fa-heart"></i></a></li> 
-  <span >
-<li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
-
-    <?php
-        $ss = $_SESSION['email'];
-        $count = 0;
-        $con = mysqli_connect("localhost", "root", "1234", "loginproject");
-
-        if ($con) {
-            $result = mysqli_query($con, "SELECT * FROM addtocart WHERE user_id='$ss'");
-
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_array($result)) {
-                    if ($row['image']) {
-                        $count++;
-                    }
-                }
-            }
-
-            $_SESSION['cnt'] = $count;
-            echo $_SESSION['cnt'];
-        } else {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-    ?>
-    </i></a></li> 
-</span>
 </ul>
 </section>
         
         <div class="container">
-            <button class="btn1"><a href="manger.php" class="text-align">
-               GO BACK</a></button>
+            <a href="manger.php" class="text-align"><button class="btn1">
+               GO BACK</button></a>
                <div class="container">
   <div class="row">       
           
@@ -158,7 +130,7 @@ while($row=mysqli_fetch_assoc($result)){
  <div class="col-md-3">
      <div class="card mb-4">
          <div class="card-body">
-             <h5 class="card-title">UserName:'.$name.'</h5>
+             <h5 class="card-title">UserName: '.$name.'</h5>
              <br/>
              <p class="card-text">Phone: '.$phone.'</p>
              <p class="card-text">Password: '.$password.'</p>

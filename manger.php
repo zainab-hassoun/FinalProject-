@@ -2,7 +2,7 @@
 <style>
 	body {
 background: linear-gradient(#f5ebe0) ;		
-background-image:url('https://tzofit-jewelry.com/wp-content/uploads/2022/07/IMG_0128_950x950.jpg');
+background-image:url('https://p1.pxfuel.com/preview/100/402/523/jewellery-marble-table-table-watch-necklace-ering.jpg');
 height: 100%; 
 background-position: center;
 background-repeat: no-repeat;
@@ -12,7 +12,7 @@ background-size:cover;
 
 input[type=submit] {
   width: 30%;
-  background-color: #f0f8ff;
+  background-color:#fbf7f3 ;
   color:#9d8189;
   padding: 10px 14px ;
   margin: 8px 0;
@@ -21,7 +21,7 @@ input[type=submit] {
   cursor: pointer;
 }
 input[type=submit]:hover {
-  background-color: #d7ecff;
+  background-color: #f0f8ff;
 }
 h1{
 	
@@ -29,7 +29,7 @@ h1{
 	font-family: Arial, sans-serif;
 }
 button{
-    background:#f0f8ff;
+    background:#fbf7f3;
 border:none;
 border-radius: 30px;
   border: 2px solid ;

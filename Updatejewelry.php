@@ -125,6 +125,8 @@ transition: all 200ms;
   .flex-outer li label,
   .flex-outer li p {
     padding: 8px;
+    color:#9d8189;
+    font-family: "Roboto", sans-serif;
     font-weight: 300;
     letter-spacing: .09em;
     text-transform: uppercase;
@@ -155,13 +157,17 @@ transition: all 200ms;
   .flex-inner li {
     width: 100px;
   }
+  h1{
+    color:#9d8189;
+  }
 </style>
 <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <html>
   
 <body>
-  <h1 align="center" >Please enter details the jewerly you want to update</h1>
+  <h1 align="center" >Update jewerly</h1>
+</br>
 <div class="container">
   <form action="" method="POST">
     <ul class="flex-outer">
@@ -187,11 +193,9 @@ transition: all 200ms;
       </li>
       <li>
         
-      <button class="btn btn-primary" class="text-light" type="submit" name="submit" value="Update"> Update</a></button>
+      <button class="btn btn-primary" class="text-light" style="margin:10px "  type="submit" name="submit" value="Update"> Update</a></button>
     
-      </li>
-      
-      <button  class="btn btn-danger"><a href="manger.php" style="color:#9d8189" class="text-light">Log Out</a></button>
+      <button  class="btn btn-danger"><a href="manger.php" style="margin:5px " class="text-light">Log Out</a></button> </li>
     </ul>
   </form>
 </div>

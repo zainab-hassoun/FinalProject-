@@ -64,17 +64,8 @@ body {
     max-width: 1400px;
     margin: 0 auto;
 }
-.btn1{
-    width: 15%;
-    border-radius: 20px;
-  background-color: #f0f8ff;
-  
-  padding: 10px 14px ;
-  margin: 20px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+
+
 .card-text{
     font-family: "Roboto", sans-serif;
 }
@@ -85,17 +76,14 @@ body {
         <ul>
             <li><a href="homeuser.php"><img src="image/img231.jpg" width="120px" /></a></li>
             <li style="padding:10px; "><a style="color:#9d8189;font-family:serif;" href="homeuser.php">Home</a></li>
-            <li style="padding:10px;"><a style="color:#9d8189;font-family: serif;" href="contact.php">Contact</a></li> 
             <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
             <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="login.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
-            <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="heart.php" ><i class="fa-regular fa-heart"></i></a></li> 
-            <li style="padding:15px;" class="icon"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"></i></a></li> 
         </ul>
     </section> 
     
     <div class="container">
-        <button class="btn1"><a href="addmangers.php" class="text-align"><i class="bi bi-add">Add Manager</a></button>
-        <button class="btn1"><a href="manger.php" class="text-align"><i class="bi bi-add">GO BACK</a></button>
+        <a href="addmangers.php" class="text-align"><button class="btn1"><i class="bi bi-add">Add Manager</button></a>
+       <a href="manger.php" class="text-align"> <button class="btn1"><i class="bi bi-add">GO BACK</button></a>
 
         <div class="row">
             <?php

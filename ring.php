@@ -303,8 +303,6 @@ function deleteProduct(productId) {
       <div class="card-body">
       <h3 class="card-title" align="center" style="color:#9d8189;font-family: serif;" ><?php echo $row['name_p']?></h3>
       <p class="card-text" ><?php echo $price?>$</p>
-     
-      <p class="card-text" >id=<?php echo $row['id']; ?></p>
       <input type="number" name="update_qnt" style="height:40px" value="1" min="0" max="<?php echo $row['amount']?>" class="input2"/>
       <input type="hidden" name="id" value="<?php echo $row['id']; ?>"/>
       <input type="submit" name="update" value="Update"  class="input1"/><br>

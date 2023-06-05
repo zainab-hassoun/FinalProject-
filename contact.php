@@ -66,7 +66,6 @@ text-decoration: none;
  <body >
 	
 <ul>
-  <!-- <li><a href="homeuser.php"><img src="image/img231.jpg" width="120px"   /></a></li> -->
   <li style="padding:10px; "><a style="color:#9d8189;font-family:serif;" href="homeuser.php">Home</a></li>
   <li style="padding:10px;"><a style="color:#9d8189;font-family: serif;" href="contact.php">Contact</a></li> 
   <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
@@ -76,6 +75,7 @@ text-decoration: none;
   <li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
     <?php
     session_start();
+    if(isset($_SESSION['email'])){
         $ss = $_SESSION['email'];
         $count = 0;
         $con = mysqli_connect("localhost", "root", "1234", "loginproject");
@@ -96,6 +96,7 @@ text-decoration: none;
         } else {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
+    }
     ?>
     </i></a></li> 
 </span></ul>

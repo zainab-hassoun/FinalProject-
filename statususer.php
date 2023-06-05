@@ -48,6 +48,7 @@
   <li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
     <?php
     session_start();
+    if(isset($_SESSION['email'])){
         $ss = $_SESSION['email'];
         $count = 0;
         $con = mysqli_connect("localhost", "root", "1234", "loginproject");
@@ -68,6 +69,7 @@
         } else {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
+      }
     ?>
    </i></a></li> 
 </span>
@@ -87,7 +89,9 @@
 
     $con=mysqli_connect("localhost","root","1234","loginproject");
     $sum=0;
-    $result1 = mysqli_query($con,"SELECT * FROM `payment1` where user_id='".$_SESSION['email']."'"); 
+    if(isset($_SESSION['email'])){
+    $ss = $_SESSION['email'];
+    $result1 = mysqli_query($con,"SELECT * FROM `payment1` where user_id='".  $ss."'"); 
         while($row = mysqli_fetch_array($result1)){
           $sum=$row['price']*$row['quantity'];
           echo "<tr>";
@@ -99,6 +103,7 @@
         echo "</tr>";
   
       }
+    }
     ?>  
     </table>
     </center>

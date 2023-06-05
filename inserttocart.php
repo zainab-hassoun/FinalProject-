@@ -8,7 +8,7 @@ if(isset($_SESSION['email'])){
     $username = $_SESSION['email'];
 }else{
     //redirect to login page if user is not logged in
-    header("Location:loginuser.php");
+    header("Location:login.php");
     exit();
 }
 

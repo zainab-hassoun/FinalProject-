@@ -8,7 +8,16 @@
         ?>
 <html>
 <style>
-        
+          body {
+    font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
+    background-color: #9d8189;
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    padding: 50px 0;
+ 
+  }
 section{
 margin: 50px;
 }
@@ -138,7 +147,7 @@ h1 {
 </style>
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<body style="background-color:#fff" >
+<body style="background-color: #fbf7f3">
 <section>
 <ul>
   <li><a href="homeuser.php"><img src="image/img231.jpg" width="120px"/></a></li>

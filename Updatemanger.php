@@ -38,10 +38,9 @@ else{
 ?>
 <html>
 <style>
-  
   body {
     font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
-    background-image:url('https://tzofit-jewelry.com/wp-content/uploads/2022/02/IMG_72944-400x400.jpg') ;
+    background-image:url('image/img22.jpg') ;
     height: 100%; 
     background-position: center;
     background-repeat: no-repeat;
@@ -51,8 +50,8 @@ else{
   }
   input[type=submit] {
   width: 20%;
-  background-color: #f0f8ff;
-  color:#9d8189;
+  background-color: #f5ebe0;
+    color:#9d8189;
   padding: 10px 14px ;
   margin: 8px 0;
   border: none;
@@ -63,7 +62,7 @@ else{
     margin-left: auto;
     padding: 8px 16px;
     border: none;
-    background-color: #f0f8ff;
+    background-color: #f5ebe0;
     color:#9d8189;
     text-transform: uppercase;
     letter-spacing: .09em;
@@ -141,11 +140,12 @@ else{
   .flex-inner li {
     width: 100px;
   }
+
 </style>
 
 
 <body>
-  <h1 align="center" >Please enter details the manager you want to ADD</h1>
+  <h1 align="center" >Update Manager</h1>
 <div class="container">
   <form action="" method="post">
     <ul class="flex-outer">
@@ -174,8 +174,8 @@ else{
       <input type="submit" name="submit" value="Update" >
       </li>
       
-      <button ><a href="manger.php" style="color:#9d8189">Log Out</a></button>
-    </ul>
+
+      <button ><a href="manger.php" style="color:#9d8189;">Log Out</a></button>    </ul>
   </form>
 </div>
 </body>

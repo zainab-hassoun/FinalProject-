@@ -229,7 +229,7 @@ if (mysqli_num_rows($result) > 0) {
         </div>
         <div class="col-sm-6">
             <div class="card-body">
-                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name']; ?></span></h3><br>
+                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name_p']; ?></span></h3><br>
                 <p class="card-text"><h3 style="color:#9d8189;font-family: serif;">Price: <span id="productPrice"><?php echo $row['price']; ?></span>$</h3></p><br>
                 <p class="card-text" id="productid" data-id="<?php echo $row['id']; ?>"></p><br>
 
@@ -237,28 +237,23 @@ if (mysqli_num_rows($result) > 0) {
                 $type = $row['type'];
 
                 // Retrieve other products of the same type
-                $sql = "SELECT * FROM `tblproduct` WHERE type = '$type' AND id != '$id'";
+                $sql = "SELECT * FROM `tblproduct` WHERE type = '$type' AND id != '$id' AND amount > 0 LIMIT 3";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                     // שינוי: מספר המוצרים מוגבל ל-3
 
-                    function getRandomProducts($products, $count) {
-                        $randomIndexes = array_rand($products, $count);
-                        $randomProducts = array();
-
-                        foreach ($randomIndexes as $index) {
-                            $randomProducts[] = $products[$index];
-                        }
-
+                     function getRandomProducts($products) {
+                        shuffle($products);  // שימוש בפונקציה shuffle() לשינוי רנדומלי של המערך
+                        $randomProducts = array_slice($products, 0, 3);  // בחירת המוצרים הראשונים במערך (עד 3 מוצרים)
+                    
                         return $randomProducts;
                     }
-
                     $randomProducts = getRandomProducts($products, 3);
-
                     foreach ($randomProducts as $index => $product) {
                         ?>
-                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name']; ?>" data-id="<?php echo $product['id']; ?>">
+                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name_p']; ?>" data-id="<?php echo $product['id']; ?>">
                             <img src="<?php echo $product['image']; ?>" alt="Product Image" width="150px">
                         </a>
                         <?php
@@ -279,7 +274,7 @@ if (mysqli_num_rows($result) > 0) {
             <a href="cart.php" style="color:#f5ebe0;">Back</a>
             </button>
              <button type="button" id="addToCartButton" class="btn1">
-            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name']; ?>">
+            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name_p']; ?>">
                Add To Cart </a>
             </button>
            
@@ -364,7 +359,7 @@ $ss = $_SESSION['email'];
 $sumprice = 0;
 $total = 0;
 $con = mysqli_connect("localhost", "root", "1234", "loginproject");
-$result = mysqli_query($con, "SELECT * FROM necklace WHERE id='$id'");
+$result = mysqli_query($con, "SELECT * FROM necklace where id = '$id' ");
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
     ?>
@@ -383,20 +378,16 @@ if (mysqli_num_rows($result) > 0) {
                 $type = $row['type'];
 
                 // Retrieve other products of the same type
-                $sql = "SELECT * FROM `necklace` WHERE type = '$type' AND id != '$id'";
+                $sql = "SELECT * FROM `necklace` WHERE type = '$type' AND id != '$id' AND amount > 0 LIMIT 3";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                    function getRandomProducts($products, $count) {
-                        $randomIndexes = array_rand($products, $count);
-                        $randomProducts = array();
-
-                        foreach ($randomIndexes as $index) {
-                            $randomProducts[] = $products[$index];
-                        }
-
+                    function getRandomProducts($products) {
+                        shuffle($products);  // שימוש בפונקציה shuffle() לשינוי רנדומלי של המערך
+                        $randomProducts = array_slice($products, 0, 3);  // בחירת המוצרים הראשונים במערך (עד 3 מוצרים)
+                    
                         return $randomProducts;
                     }
 
@@ -410,7 +401,7 @@ if (mysqli_num_rows($result) > 0) {
                         <?php
                     }
                 }
-                $imageResult = mysqli_query($con, "SELECT image FROM necklace WHERE id='$id'");
+                $imageResult = mysqli_query($con, "SELECT image FROM necklace WHERE id='$id' ");
                 ?>
             </div>
         </div>
@@ -507,7 +498,7 @@ $total = 0;
 
 $con = mysqli_connect("localhost", "root", "1234", "loginproject");
 
-$result = mysqli_query($con, "SELECT * FROM earing  WHERE id='$id'");
+$result = mysqli_query($con, "SELECT * FROM earing  WHERE id='$id' ");
 
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
@@ -528,20 +519,16 @@ if (mysqli_num_rows($result) > 0) {
                 $type = $row['type'];
 
                 // Retrieve other products of the same type
-                $sql = "SELECT * FROM `earing` WHERE type = '$type' AND id != '$id'";
+                $sql = "SELECT * FROM `earing` WHERE type = '$type' AND id != '$id' AND amount > 0 LIMIT 3";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                    function getRandomProducts($products, $count) {
-                        $randomIndexes = array_rand($products, $count);
-                        $randomProducts = array();
-
-                        foreach ($randomIndexes as $index) {
-                            $randomProducts[] = $products[$index];
-                        }
-
+                    function getRandomProducts($products) {
+                        shuffle($products);  // שימוש בפונקציה shuffle() לשינוי רנדומלי של המערך
+                        $randomProducts = array_slice($products, 0, 3);  // בחירת המוצרים הראשונים במערך (עד 3 מוצרים)
+                    
                         return $randomProducts;
                     }
 
@@ -657,7 +644,7 @@ $total = 0;
 
 $con = mysqli_connect("localhost", "root", "1234", "loginproject");
 
-$result = mysqli_query($con, "SELECT * FROM barcelet WHERE id='$id'");
+$result = mysqli_query($con, "SELECT * FROM barcelet WHERE id='$id'  ");
 
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
@@ -678,20 +665,16 @@ if (mysqli_num_rows($result) > 0) {
                 $type = $row['type'];
 
                 // Retrieve other products of the same type
-                $sql = "SELECT * FROM `barcelet` WHERE type = '$type' AND id != '$id'";
+                $sql = "SELECT * FROM `barcelet` WHERE  type = '$type' AND id != '$id' AND amount > 0 LIMIT 3";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                    function getRandomProducts($products, $count) {
-                        $randomIndexes = array_rand($products, $count);
-                        $randomProducts = array();
-
-                        foreach ($randomIndexes as $index) {
-                            $randomProducts[] = $products[$index];
-                        }
-
+                    function getRandomProducts($products) {
+                        shuffle($products);  // שימוש בפונקציה shuffle() לשינוי רנדומלי של המערך
+                        $randomProducts = array_slice($products, 0, 3);  // בחירת המוצרים הראשונים במערך (עד 3 מוצרים)
+                    
                         return $randomProducts;
                     }
 
@@ -806,7 +789,7 @@ $total = 0;
 
 $con = mysqli_connect("localhost", "root", "1234", "loginproject");
 
-$result = mysqli_query($con, "SELECT * FROM anklet WHERE id='$id'");
+$result = mysqli_query($con, "SELECT * FROM anklet WHERE id='$id' ");
 
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
@@ -827,20 +810,16 @@ if (mysqli_num_rows($result) > 0) {
                 $type = $row['type'];
 
                 // Retrieve other products of the same type
-                $sql = "SELECT * FROM `anklet` WHERE type = '$type' AND id != '$id'";
+                $sql = "SELECT * FROM `anklet` WHERE type = '$type' AND id != '$id' AND amount > 0 LIMIT 3";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                    function getRandomProducts($products, $count) {
-                        $randomIndexes = array_rand($products, $count);
-                        $randomProducts = array();
-
-                        foreach ($randomIndexes as $index) {
-                            $randomProducts[] = $products[$index];
-                        }
-
+                    function getRandomProducts($products) {
+                        shuffle($products);  // שימוש בפונקציה shuffle() לשינוי רנדומלי של המערך
+                        $randomProducts = array_slice($products, 0, 3);  // בחירת המוצרים הראשונים במערך (עד 3 מוצרים)
+                    
                         return $randomProducts;
                     }
 
@@ -954,7 +933,7 @@ $total = 0;
 
 $con = mysqli_connect("localhost", "root", "1234", "loginproject");
 
-$result = mysqli_query($con, "SELECT * FROM handmade WHERE id='$id'");
+$result = mysqli_query($con, "SELECT * FROM handmade WHERE id='$id'  ");
 
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
@@ -975,20 +954,16 @@ if (mysqli_num_rows($result) > 0) {
                 $type = $row['type'];
 
                 // Retrieve other products of the same type
-                $sql = "SELECT * FROM `handmade` WHERE type = '$type' AND id != '$id'";
+                $sql = "SELECT * FROM `handmade` WHERE type = '$type' AND id != '$id' AND amount > 0 LIMIT 3 ";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                    function getRandomProducts($products, $count) {
-                        $randomIndexes = array_rand($products, $count);
-                        $randomProducts = array();
-
-                        foreach ($randomIndexes as $index) {
-                            $randomProducts[] = $products[$index];
-                        }
-
+                    function getRandomProducts($products) {
+                        shuffle($products);  // שימוש בפונקציה shuffle() לשינוי רנדומלי של המערך
+                        $randomProducts = array_slice($products, 0, 3);  // בחירת המוצרים הראשונים במערך (עד 3 מוצרים)
+                    
                         return $randomProducts;
                     }
 
@@ -1101,7 +1076,7 @@ $total = 0;
 
 $con = mysqli_connect("localhost", "root", "1234", "loginproject");
 
-$result = mysqli_query($con, "SELECT * FROM party WHERE id='$id'");
+$result = mysqli_query($con, "SELECT * FROM party WHERE id='$id' ");
 
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
@@ -1114,7 +1089,7 @@ if (mysqli_num_rows($result) > 0) {
         </div>
         <div class="col-sm-6">
             <div class="card-body">
-                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name']; ?></span></h3><br>
+                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name_p']; ?></span></h3><br>
                 <p class="card-text"><h3 style="color:#9d8189;font-family: serif;">Price: <span id="productPrice"><?php echo $row['price']; ?></span>$</h3></p><br>
                 <p class="card-text" id="productid" data-id="<?php echo $row['id']; ?>"></p><br>
 
@@ -1122,20 +1097,16 @@ if (mysqli_num_rows($result) > 0) {
                 $type = $row['type'];
 
                 // Retrieve other products of the same type
-                $sql = "SELECT * FROM `party` WHERE type = '$type' AND id != '$id'";
+                $sql = "SELECT * FROM `party` WHERE type = '$type' AND id != '$id' AND amount > 0 LIMIT 3";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                    function getRandomProducts($products, $count) {
-                        $randomIndexes = array_rand($products, $count);
-                        $randomProducts = array();
-
-                        foreach ($randomIndexes as $index) {
-                            $randomProducts[] = $products[$index];
-                        }
-
+                    function getRandomProducts($products) {
+                        shuffle($products);  // שימוש בפונקציה shuffle() לשינוי רנדומלי של המערך
+                        $randomProducts = array_slice($products, 0, 3);  // בחירת המוצרים הראשונים במערך (עד 3 מוצרים)
+                    
                         return $randomProducts;
                     }
 
@@ -1143,7 +1114,7 @@ if (mysqli_num_rows($result) > 0) {
 
                     foreach ($randomProducts as $index => $product) {
                         ?>
-                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name']; ?>" data-id="<?php echo $product['id']; ?>">
+                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name_p']; ?>" data-id="<?php echo $product['id']; ?>">
                             <img src="<?php echo $product['image']; ?>" alt="Product Image" width="150px">
                         </a>
                         <?php
@@ -1164,7 +1135,7 @@ if (mysqli_num_rows($result) > 0) {
             <a href="cart.php" style="color:#f5ebe0;">Back</a>
             </button>
              <button type="button" id="addToCartButton" class="btn1">
-            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name']; ?>">
+            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name_p']; ?>">
                Add To Cart </a>
             </button>
            
@@ -1259,34 +1230,32 @@ if (mysqli_num_rows($result) > 0) {
         </div>
         <div class="col-sm-6">
             <div class="card-body">
-                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name']; ?></span></h3><br>
+                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name_p']; ?></span></h3><br>
                 <p class="card-text"><h3 style="color:#9d8189;font-family: serif;">Price: <span id="productPrice"><?php echo $row['price']; ?></span>$</h3></p><br>
                 <p class="card-text" id="productid" data-id="<?php echo $row['id']; ?>"></p><br>
                 <?php
                 $type = $row['type'];
                 // Retrieve other products of the same type
-                $sql = "SELECT * FROM `discount` WHERE type = '$type' AND id != '$id'";
+                $sql = "SELECT * FROM `discount` WHERE type = '$type' AND id != '$id' AND amount > 0 LIMIT 3";
                 $result = mysqli_query($con, $sql);
                 if (mysqli_num_rows($result) > 0) {
                     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                    function getRandomProducts($products, $count) {
-                        $randomIndexes = array_rand($products, $count);
-                        $randomProducts = array();
-                        foreach ($randomIndexes as $index) {
-                            $randomProducts[] = $products[$index];
-                        }
+                    function getRandomProducts($products) {
+                        shuffle($products);  // שימוש בפונקציה shuffle() לשינוי רנדומלי של המערך
+                        $randomProducts = array_slice($products, 0, 3);  // בחירת המוצרים הראשונים במערך (עד 3 מוצרים)
+                    
                         return $randomProducts;
                     }
                     $randomProducts = getRandomProducts($products, 3);
                     foreach ($randomProducts as $index => $product) {
                         ?>
-                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name']; ?>" data-id="<?php echo $product['id']; ?>">
+                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name_p']; ?>" data-id="<?php echo $product['id']; ?>">
                             <img src="<?php echo $product['image']; ?>" alt="Product Image" width="150px">
                         </a>
                         <?php
                     }
                 }
-                $imageResult = mysqli_query($con, "SELECT image FROM discount WHERE id='$id'");
+                $imageResult = mysqli_query($con, "SELECT image FROM discount WHERE id='$id' AND amount > 0 ");
                 ?>
             </div>
         </div>
@@ -1298,7 +1267,7 @@ if (mysqli_num_rows($result) > 0) {
             <a href="cart.php" style="color:#f5ebe0;">Back</a>
             </button>
              <button type="button" id="addToCartButton" class="btn1">
-            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name']; ?>">
+            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name_p']; ?>">
                Add To Cart </a>
             </button>
            

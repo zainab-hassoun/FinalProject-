@@ -2,7 +2,7 @@
 <?php
 session_start();
  $con=mysqli_connect("localhost","root","1234","loginproject");
- $user=$_SESSION['email']; 
+
  if(isset($_POST['remove'])){
  $user=$_SESSION['email']; 
  $result = mysqli_query($con,"DELETE FROM addtocart WHERE user_id='$user'");
@@ -151,12 +151,13 @@ transition: all 200ms;
   <li style="padding:10px; "><a style="color:#9d8189;font-family:serif;" href="homeuser.php">Home</a></li>
   <li style="padding:10px;"><a style="color:#9d8189;font-family: serif;" href="contact.php">Contact</a></li> 
   <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
-  <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="login.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
+  <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="logout.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
   <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="heart.php" ><i class="fa-regular fa-heart"></i></a></li> 
   <span class='badge '>
 <li style="padding:15px;" class="iconcart"><a style="color:#9d8189;font-family:serif;"  href="cart.php" ><i class="fa-solid fa-cart-shopping"> 
 
     <?php
+    if(isset($_SESSION['email'])){
         $ss = $_SESSION['email'];
         $count = 0;
         $con = mysqli_connect("localhost", "root", "1234", "loginproject");
@@ -177,6 +178,7 @@ transition: all 200ms;
         } else {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
+      }
     ?>
     </i></a></li> 
 </span>
@@ -187,7 +189,7 @@ transition: all 200ms;
 </br>
 <div class="row itemsBlock"  >
     <?php 
-    
+   if(isset($_SESSION['email'])){
     $ss = $_SESSION['email'];
     $sumprice=0;
     $total=0;
@@ -288,6 +290,7 @@ transition: all 200ms;
 </script>
 
 <?php }
+    }
 } ?>
 
     </center>
