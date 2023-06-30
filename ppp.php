@@ -33,220 +33,187 @@ if(isset($_POST['submit'])){
     }
     else{
         echo "error";
-     
     }
 }
 ?>
 <style>
- 
     body {
-    background: linear-gradient(#f5ebe0) ;		
-    background-image:url('https://cdn.shopify.com/s/files/1/0595/5262/8886/files/IRY_Jewelry_shop.jpg?v=1633184471');
-   
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:cover;
+        background-image:url('https://cdn.shopify.com/s/files/1/0595/5262/8886/files/IRY_Jewelry_shop.jpg?v=1633184471');
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
-    ul {
-    list-style-type: none;
-    margin-top: 10px;
-    padding: 0;
-    height:60px;
-    overflow: hidden;
-    font-family: 'Roboto', sans-serif;
-    }
-    
-    li {
-    float: left;
-    
-    }
-   
-    li a {
-    display: block;
-    
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    background-color: #fff;
-    color: #000;
-    }
-    .icon1{
-       
+   .icon1 {
+    font-size: 14px;
+    margin-right: 5px;
     float: right;
-    
-    }
-    .cart-icon {
-        font-size: 24px;
-        margin-right: 5px;
-    }
-    
-    .iconcart {
-        font-size: 14px;
-        font-weight: bold;
-     
-        color: #000;
-        padding: 4px;
-        padding: 14px 16px;
-    text-decoration: none;
-        margin-left: 530px;
-        display: block;
-    }
-  .wrapper{
-    background-image:url('image/img555.jpg');
-    width: 500px;
-    height:700px;
-    padding: 25px;
-    margin: 50px auto 0;
-    
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
-  }
-  .wrapper h2{
-   
-    color: #9d8189;
-    font-size: 24px;
-    padding: 10px;
-    margin-bottom: 20px;
-    text-align: center;
-    border: 3px dotted #9d8189;
+}
+.iconcart {
+    font-size: 14px;
+    color: #000;
+    float: right;
+    margin-right: 5px;
+}
+    ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
   }
   
-  h4 {
-            padding-bottom: 2px;
-            color: #9d8189;
-        }
-
-        .input-group {
-            margin-bottom: 8px;
-            width: 90%;
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            padding: 2px;
-        }
-
-        .input-box {
-            width: 100%;
-            margin-right: 12px;
-            position: relative;
-        }
-
-        .input-box:last-child {
-            margin-right: 0;
-        }
-
-  .name{
-    padding: 14px 10px 10px 100px;
-    width: 100%;
-    background-color: #fcfcfc;
-    border: 1px solid ;
-    outline: none;
-    letter-spacing: 1px;
-    transition: 0.3s;
-    border-radius: 3px;
-    color: #9d8189;
+  li {
+	float: left;
   }
-  .name:focus, .dob:focus{
-    -webkit-box-shadow:0 0 2px 1px #9d8189;
-    -moz-box-shadow:0 0 2px 1px #9d8189;
-    box-shadow: 0 0 2px 1px #9d8189;
-    border: 1px solid #9d8189;
+  
+  li a {
+	display: block;
+	color: #f5ebe0;
+	text-align: center;
+	padding: 16px 30px;
+	text-decoration: none;
+  
+   background-color:#fff;
+   border-radius: 40%;
   }
-  .input-box .icon{
-    width: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    color: #333;
-    background-color: #f1f1f1;
-    border-radius: 2px 0 0 2px;
-    transition: 0.3s;
-    font-size: 20px;
-    pointer-events: none;
-    border: 1px solid #9d8189;
-    border-right: none;
-  }
-  .name:focus + .icon{
-    background-color: #9d8189;
-    color: #fff;
-    border-right: 1px solid #9d8189;
-    border: none;
-    transition: 1s;
-  }
-  .dob{
-    width: 450px;
-    padding: 14px;
-    text-align: center;
-    background-color: #fcfcfc;
-    transition: 0.3s;
-    outline: none;
-    border: 1px solid #9d8189;
-    border-radius: 3px;
-  }
-  .radio{
-    display: none;
-  }
-  .input-box label{
-    width: 100%;
-    padding: 13px;
-    background-color: #fcfcfc;
-    display: inline-block;
-
-    text-align: center;
-    border: 1px solid #9d8189;
-  }
-  .input-box label:first-of-type{
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-right: none;
-  }
-  .input-box label:last-of-type{
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-  .radio:checked + label{
-    background-color: #9d8189;
-    color: #fff;
-    transition: 0.5s;
-  }
-  .input-box select{
-    display: inline-block;
-    width: 50%;
-    padding: 12px;
-    background-color: #fcfcfc;
-
-    text-align: center;
-    font-size: 16px;
-    outline: none;
-    border: 1px solid #9d8189;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .input-box select:focus{
-    background-color: #9d8189;
-    color: #fff;
-    text-align: center;
-  }
-  button{
-    width: 100%;
-    background: transparent;
-    border: none;
-    background: #9d8189;
-    color: #fff;
-    padding: 15px;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.35s ease;
-  }
-  section{
-    margin: 50px;
+  
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height:70vh;
+    
+}
+.screen {
+        background-image:url('image/img555.jpg');
+        position: relative;
+        height: 505px;
+        width: 400px;
+        box-shadow: 0px 0px 24px ;
+       top:10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
-    .aa{
-    margin: 10px;
-    }
+.screen__content {
+	z-index: 1;
+	position: relative;	
+	height: 100%;
+}
+.login {
+	width: 320px;
+	padding: 50px;
+	padding-top: 5px;
+}
+.login__field {
+	padding: 20px 1px;	
+	position: relative;	
+   
+}
+.login__icon {
+	position: absolute;
+	top: 20px;
+	color: #9d8189;
+}
+.login__input {
+	border: none;
+	border-bottom: 2px solid #9d8189;
+	background: none;
+    color:#9d8189;
+	padding: 15px;
+	padding-left: 2px;
+	font-weight: 700;
+	font-family: cursive;
+	width: 35%;
+	transition: .2s;
+}
+.login__input1 {
+	border: none;
+	border-bottom: 2px solid #9d8189;
+	background: none;
+    color:#9d8189;
+	padding: 15px;
+	padding-left: 2px;
+	font-weight: 700;
+	font-family: cursive;
+	width: 60%;
+	transition: .2s;
+}
+.login__input:active,
+.login__input:focus,
+.login__input:hover {
+	outline: none;
+	border-bottom-color: #9d8189;
+}
+.login__input1:active,
+.login__input1:focus,
+.login__input1:hover {
+	outline: none;
+	border-bottom-color: #9d8189;
+}
+.login__submit {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 30px ;
+	padding: 16px 20px;
+	border-radius: 36px;
+	border: 1px solid #9d8189;
+	text-transform: uppercase;
+	font-weight: 700;
+	align-items: center;
+	width:130px;
+	color: #9d8189;
+	box-shadow: 0px 2px 2px #9d8189;
+	cursor: pointer;
+	transition: .2s;
+}
+.login__submit:active,
+.login__submit:focus,
+.login__submit:hover {
+	border-color: #9d8189;
+	outline: none;
+}
+.button__icon {
+	font-size: 24px;
+	margin-left: auto;
+	color: #9d8189;
+}
+.social-login {	
+	position: absolute;
+	height: 140px;
+	width: 160px;
+	text-align: center;
+	bottom: 0px;
+	right: 0px;
+	color:#9d8189;
+}
+.social-icons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    color:#9d8189;
+}
+.social-login__icon {
+	padding: 20px 10px;
+	color:#9d8189;
+	text-decoration: none;	
+	text-shadow: 0px 0px 8px #9d8189;
+}
+.a{
+	text-align:left;
+	margin:10px;
+	color:#772d8b
+}
+.fo{
+	margin:20px;
+}
+.pay{
+    color:#9d8189
+}
+.auth-link{
+    text-align:center;
+    color:#9d8189;
+}
 </style>
 <!DOCTYPE html>
 <html lang="en">
@@ -254,12 +221,10 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Form</title>
-   
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <body>
-	<section>
 <ul>
   <li style="padding:10px; "><a style="color:#9d8189;font-family:serif;" href="homeuser.php">Home</a></li>
   <li style="padding:10px;"><a style="color:#9d8189;font-family: serif;" href="contact.php">Contact</a></li> 
@@ -273,7 +238,6 @@ if(isset($_POST['submit'])){
         $ss = $_SESSION['email'];
         $count = 0;
         $con = mysqli_connect("localhost", "root", "1234", "loginproject");
-
         if ($con) {
             $result = mysqli_query($con, "SELECT * FROM addtocart WHERE user_id='$ss'");
 
@@ -294,60 +258,57 @@ if(isset($_POST['submit'])){
     ?>
      </i></a></li> 
 </span>
-  <center></section>
 
-    <div class="wrapper">
-        <h2>Payment Form</h2>
-    <form  action="" method="post">
-            <h4>Account</h4>
-            <div class="input-group">
-                <div class="input-box">
-                    <input type="text" name="fullname" placeholder="Full Name" required class="name">
-                    <i class="fa fa-user icon"></i>
-                </div>
+</ul><body>
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <form action="" class="login" method="post">
+                <h2 class="auth-link"> Payment Form</h2>
+                    <div class="login__row">
+                        <div class="login__field">
+                            <i style="color:#9d8189" class="fa fa-user icon"></i>
+                            <input type="text" name="Account" class="login__input" placeholder="Account" required="required">
+                            <i  style="color:#9d8189" class="fa fa-user icon"></i>
+                            <input type="tel" placeholder="Card CVC" class="login__input" name="cvv" required class="name">
+                        </div>
+                    </div>
+                    <div class="login__row">
+                    <div class="login__field">
+                        <i style="color:#9d8189" class="fa fa-envelope icon"></i>
+                        <input type="text" name="date" class="login__input" placeholder="MM/YY" class="dob">
+                        <i style="color:#9d8189" class="fa fa-envelope icon"></i>
+                            <input type="email" name="email" class="login__input" placeholder="Email Address" required class="name">
+                           
+                        </div>
+                        </div>
+                        <div class="login__field">
+                        <i style="color:#9d8189" class="fa fa-credit-card icon"></i>
+                            <input type="tel" placeholder="Card Number" class="login__input1" name="cardnumber" required class="name">
+                        </div>
+                        <div class="pay">
+    <input type="radio" name="pay" id="bc1" checked class="a" name="CreditCard">
+    <label for="bc1" style="margin-right:2px;"><span><i class="fa fa-cc-visa"></i> Credit Card</span></label>
+    <input type="radio" name="pay" id="bc2" class="a" name="Paypal">
+    <label for="bc2"><span><i class="fa fa-cc-paypal"></i> Paypal</span></label>
+</div>
+
+                    
+                    <button class="button login__submit" name="submit">
+                        <span class="button__text" style="font-family: cursive;">
+                            PAY NOW
+                        </span>
+                    </button>
+                </form>
             </div>
-            <div class="input-group">
-                <div class="input-box">
-                    <input type="email" name="email"placeholder="Email Adress" required class="name">
-                    <i class="fa fa-envelope icon"></i>
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="input-box">
-                    <h4>Valid Thru </h4>
-                    <input type="text"name="date" placeholder="MM/YY" class="dob">
-                </div>
-            </div>
-            <div class="input-group">
-                <div >
-                    <h4>Payment Details</h4>
-                    <input type="radio" name="pay" id="bc1" checked class="aa" name="CreditCard">
-                    <label for="bc1"><span><i class="fa fa-cc-visa"></i> Credit Card</span></label>
-                    <input type="radio" name="pay" id="bc2" class="aa" name="Paypal">
-                    <label for="bc2"><span><i class="fa fa-cc-paypal"></i> Paypal</span></label>
-                </div>
-            </div><br/>
-            <div class="input-group">
-                <div class="input-box">
-                    <input type="tel" placeholder="Card Number" name="cardnumber" required class="name">
-                    <i class="fa fa-credit-card icon"></i>
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="input-box">
-                    <input type="tel" placeholder="Card CVC"name="cvv" required class="name">
-                    <i class="fa fa-user icon"></i>
-                </div>
-               
-            </div>
-            <!-- <a href="testBuyCart.php?user_id=<?php //echo $user;?> "style="color:#f5ebe0;"><button type="button" width="50px">sure Buy</button></a> -->
-            
-            <div class="input-group">
-                <div class="input-box">
-                <button type="submit" name="submit">
-                     PAY NOW</button>   
-                </div>
-                </center>
+        </div>
+    </div>
+</body>
+
+
+</body>
+</html>
+
                 <?php
 
 

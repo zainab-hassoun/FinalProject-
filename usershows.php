@@ -96,22 +96,13 @@
 .card-text{
     font-family: "Roboto", sans-serif;
 }
+section{
+    margin:30px;
+}
 </style>
-      	
 <section>
-	<section>
- 
-<ul>
-  <li><a href="homeuser.php"><img src="image/img231.jpg" width="120px"   /></a></li>
-  <li style="padding:10px; "><a style="color:#9d8189;font-family:serif;" href="homeuser.php">Home</a></li>
-  <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
-  <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="login.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
-</ul>
-</section>
-        
         <div class="container">
-            <a href="manger.php" class="text-align"><button class="btn1">
-               GO BACK</button></a>
+          
                <div class="container">
   <div class="row">       
           
@@ -148,5 +139,6 @@ while($row=mysqli_fetch_assoc($result)){
  
    
         </div>
+</section>
     </body>
 </html>

@@ -36,10 +36,10 @@ if (!$con) {
         <div class="screen">
             <div class="screen__content">
                 <p class="auth-link">
-                    If You Are a Manager? <a href="loginmanger.php">Login</a>
+                    If You Are a Manager? <a href="loginmanger.php" style="color:#9d8189">Login</a>
                 </p>
                 <p class="auth-link">
-                    Not a member? <a href="signup.php">Sign UP</a>
+                    Not a member? <a href="signup.php" style="color:#9d8189">Sign UP</a>
                 </p>
 
                 <form action="" class="login" method="post">

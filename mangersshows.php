@@ -69,22 +69,26 @@ body {
 .card-text{
     font-family: "Roboto", sans-serif;
 }
+.btn1{
+    width: 15%;
+    border-radius: 20px;
+ 
+  background-color: #f5ebe0;
+    color:#9d8189;
+  padding: 10px 14px ;
+  margin: 20px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+section{
+    margin:20px;
+}
 </style>
 </head>
-<body>  	
-    <section>
-        <ul>
-            <li><a href="homeuser.php"><img src="image/img231.jpg" width="120px" /></a></li>
-            <li style="padding:10px; "><a style="color:#9d8189;font-family:serif;" href="homeuser.php">Home</a></li>
-            <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
-            <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="login.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
-        </ul>
-    </section> 
-    
+<body>  
+<section>	 
     <div class="container">
-        <a href="addmangers.php" class="text-align"><button class="btn1"><i class="bi bi-add">Add Manager</button></a>
-       <a href="manger.php" class="text-align"> <button class="btn1"><i class="bi bi-add">GO BACK</button></a>
-
         <div class="row">
             <?php
             $sql = "SELECT * FROM `manger`";
@@ -118,5 +122,6 @@ body {
             ?>
         </div>
     </div>
+    <section>
 </body>
 </html>

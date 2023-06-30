@@ -61,7 +61,10 @@ text-decoration: none;
         border-radius: 25%;
         margin-left: 730px;
     }
-
+    .auth-link{
+    text-align:center;
+    color:#9d8189;
+}
 </style>
  <body >
 	
@@ -105,6 +108,7 @@ text-decoration: none;
 		<div class="screen__content">
 		<nav class="auth-nav">
 			<form action="" class="login" method="post" >
+            <h2 class="auth-link">Contact</h2>
 				<div class="login__field">
 					<i style="color:#9d8189"  class="bi bi-people-fill"></i>
 					<input type="text"  id="name"  name="name" class="login__input" placeholder="Your Name"  pattern=[A-Z\sa-z]{3,20} required>

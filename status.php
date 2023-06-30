@@ -28,7 +28,6 @@
     .btn1{
     width: 15%;
     border-radius: 20px;
- 
   background-color: #f5ebe0;
     color:#9d8189;
   padding: 10px 14px ;
@@ -36,26 +35,34 @@
   border: none;
   border-radius: 4px;
     }
-
+    tr{
+      padding:15px;
+      margin:5px;
+    }
+    .btn1{
+    width: 15%;
+    border-radius: 20px;
+ 
+  background-color: #f5ebe0;
+    color:#9d8189;
+  padding: 10px 14px ;
+  margin: 20px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+section{
+  margin:20px;
+}
 </style>
     <body >
       	<meta charset="utf-8">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 <body>
-	 <section>
-   <ul>
-  <li><a href="homeuser.php"><img src="image/img231.jpg" width="120px"   /></a></li>
-  <li style="padding:10px; "><a style="color:#9d8189;font-family:serif;" href="homeuser.php">Home</a></li>
-  <li style="padding:10px;"><a style="color:#9d8189; font-family: serif;"  href="statususer.php">Status <i class="bi bi-clock-history"></i></a></li> 
-  <li style="padding:15px;" class="icon"><a  style="color:#9d8189;font-family:serif;" href="login.php" > <i class="fa-sharp fa-solid fa-right-from-bracket" style="width:40px"></i></a></li>
-
-</ul>
-</section> 
-
+<section>
 <div class="container">
-<a href="manger.php" class="text-align"><button class="btn1">
-               GO BACK</button></a>
+
    <table class="table">
     <tr>
       <th scope="col">username</th>
@@ -84,6 +91,7 @@
     </table>
     </center>
   </div>
+    </section>
     </body>
 </html>
    

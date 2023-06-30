@@ -24,12 +24,13 @@ background-size:cover;
 	//background-image:url('image/img555.jpg');
 	/* background-color: #f5ebe0; */
   
+	
   ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #9d8189;
+	
   }
   
   li {

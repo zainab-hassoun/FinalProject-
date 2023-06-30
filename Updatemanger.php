@@ -175,7 +175,7 @@ else{
       </li>
       
 
-      <button ><a href="manger.php" style="color:#9d8189;">Log Out</a></button>    </ul>
+      </ul>
   </form>
 </div>
 </body>

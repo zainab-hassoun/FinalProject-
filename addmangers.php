@@ -160,7 +160,7 @@ else{
       <input type="submit" name="submit" value="ADD New jewerly" >
       </li>
       
-      <button ><a href="manger.php" style="color:#9d8189;">Log Out</a></button>
+      <button ><a href="mangersshows.php" style="color:#9d8189;">Log Out</a></button>
     </ul>
   </form>
 </div>
