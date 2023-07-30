@@ -31,9 +31,7 @@
 }
 </style>
     <body>
-       <center>
-       <h2 style="color:#9d8189">hi, Click Here To Enter<h2>
-      </center>
+     
     <div class="grid-container">
 	<nav class="slide-down">
 		<span id="logo" style="color:#9d8189">Jewelry.</span>

@@ -6,4 +6,7 @@
         alert(str);
     </script>
 <?php
-    header('location:homeuser.php');?>
+     header('location:homeuser.php');
+    
+    
+    ?>

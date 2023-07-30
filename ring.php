@@ -150,6 +150,58 @@ transition: all 200ms;
         border-radius: 25%;
         margin-left: 640px;
     }
+  /* Center the search container */
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+  }
+
+  .search-container select {
+    border-radius: 25px;
+    border: 0.2px solid #9d8189;
+    padding: 10px;
+    width: 300px;
+    height: 50px;
+  }
+  .search-container button[type="submit"] {
+    rder:none;
+border-radius: 25px;
+  border: 1px solid #9d8189;
+  padding: 20px;
+  width: 110px;
+  height: 80px;
+display: inline-block;
+border-width: 0;
+box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 5px 10px 0;
+cursor: pointer;
+font-family: Arial, sans-serif;
+font-size: 1em;
+height: 50px;
+padding: 0 25px;
+color:#f5ebe0;
+transition: all 200ms;
+  }
+  .card-body {
+    /* Rest of your styles for the card body */
+    overflow: hidden;
+    font-family: Georgia, serif;
+ color:#9d8189;
+text-align:center;
+
+
+}
+
+.short-name {
+    cursor: pointer;
+}
+
+.read-more {
+    color:#9d8189 ;
+    cursor: pointer;
+}
+
 </style>
 <body>
 <br>
@@ -191,6 +243,68 @@ transition: all 200ms;
     </i></a></li> 
 </span>
 </ul>
+<br>
+<div class="search-container">
+  <form action="" method="GET">
+    <select name="product_type" >
+      <option value="">Select product type...</option>
+      <?php
+   
+     // Replace 'your_database_host', 'your_username', 'your_password', and 'your_database_name' with your actual database credentials.
+     $con = mysqli_connect("localhost", "root", "1234", "loginproject");
+     if (!$con) {
+       die(mysqli_error($con));
+     }
+
+     // Query to fetch distinct product types from the database
+     $query = "SELECT DISTINCT type FROM tblproduct";
+
+     // Execute the query and handle potential errors
+     $result = mysqli_query($con, $query);
+     if (!$result) {
+       die(mysqli_error($con));
+     }
+
+     // Loop through the product types and generate dropdown options
+     while ($row = mysqli_fetch_assoc($result)) {
+       $product_type = $row['type'];
+       echo '<option value="' . $product_type .'">' . $product_type . '</option>';
+     }
+  
+      ?>
+    </select>
+    <button type="button" onclick="performSearch()">Search</button>
+  </form>
+</div>
+
+
+<script>
+    function performSearch() {
+        var productType = document.querySelector('select[name="product_type"]').value;
+
+        console.log('Selected product type:', productType); // Check if the value is correctly obtained
+
+        // Create a new AJAX request
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Update the product container with the search results
+                    document.querySelector('.itemsBlock').innerHTML = xhr.responseText;
+                } else {
+                    // Handle error if needed
+                    console.error('AJAX request failed with status:', xhr.status);
+                }
+            }
+        };
+
+        // Send the AJAX request to the search_products.php file
+        xhr.open('GET', 'search_products.php?product_type=' + encodeURIComponent(productType), true);
+        xhr.send();
+    }
+</script>
+
+
 <br>
 <div class="row itemsBlock">
  <?php
@@ -266,7 +380,6 @@ function removeFromHeart(productId) {
   // Remove heart status from local storage
   localStorage.removeItem("heartStatus-" + productId);
 }
-
 document.addEventListener("DOMContentLoaded", function() {
   var productId = <?php echo $row['id']; ?>;
   var heartIcon = document.getElementById("heart-icon-" + productId);
@@ -296,12 +409,32 @@ function deleteProduct(productId) {
   xhr.send();
 }
 </script>
+<script>
+    function toggleFullName(element) {
+        var cardBody = element.parentElement;
+        var fullNameSpan = cardBody.querySelector('.full-name');
+
+        // Toggle the visibility of the full name
+        if (fullNameSpan.style.display === 'none') {
+            fullNameSpan.style.display = 'inline';
+            element.innerHTML = '...';
+        } else {
+            fullNameSpan.style.display = 'none';
+            element.innerHTML = '...';
+        }
+    }
+</script>
 
 
 </div>
-
-      <div class="card-body">
-      <h3 class="card-title" align="center" style="color:#9d8189;font-family: serif;" ><?php echo $row['name_p']?></h3>
+    <div class="card-body">
+    <h5 class="card-title">
+        <span class="short-name"><?php echo substr($name, 0, 15); ?></span>
+        <?php if (strlen($name) > 15) { ?>
+            <span class="read-more" onclick="toggleFullName(this)">...</span>
+        <?php } ?>
+        <span class="full-name" style="display: none;"><?php echo $name; ?></span>
+    </h5>
       <p class="card-text" ><?php echo $price?>$</p>
       <input type="number" name="update_qnt" style="height:40px" value="1" min="0" max="<?php echo $row['amount']?>" class="input2"/>
       <input type="hidden" name="id" value="<?php echo $row['id']; ?>"/>
@@ -309,13 +442,11 @@ function deleteProduct(productId) {
       <a href="inserttocart.php?id=<?php echo $row['id']; ?>"  style="color:#f5ebe0;"><br><button type="button" name="addtocart">Add To Cart</a></button> 
       </div>
       <?php
-
       $con=mysqli_connect("localhost","root","1234","loginproject");
       if(!empty($_POST['update_qnt'])) {
          $quantity = $_POST['update_qnt']; 
          $product_id = $_POST['id'];
-        $result= mysqli_query($con, "UPDATE addtocart SET quantity='$quantity' WHERE id ='$product_id'");
-          // header("location:ring.php");
+        $result= mysqli_query($con, "UPDATE addtocart SET quantity='$quantity' WHERE id ='$product_id'");    
      }
     ?>
         </form>
@@ -323,6 +454,7 @@ function deleteProduct(productId) {
      <?php
 }
 } 
+mysqli_close($con);
 ?>
 </div>
 </section>

@@ -76,9 +76,10 @@
   <div class="sidebar">
   
     <h2>Jewelry</h2>
+    <button onclick="showPage('prcent')">Prcent</button><br><br>
     <button onclick="showPage('addJewelry')">Add Jewelry</button><br><br>
     <button onclick="showPage('productmanger')">Remove Jewelries and Update</button><br><br>
-    <button onclick="showPage('status')">Status</button><br><br>
+    <button onclick="showPage('status')">Hostory</button><br><br>
     <button onclick="showPage('users')">Users</button><br><br>
     <button onclick="showPage('managers')">Managers</button><br><br>
     <button onclick="logout()">Log Out</button><br><br>
@@ -95,8 +96,9 @@
 
   var body = document.body;
   body.style.backgroundImage = `url(${imageUrl})`; // שינוי תמונת הרקע של ה־body
-
-  if (page === 'addJewelry') {
+  if (page === 'prcent') {
+    loadPhpPage('prcent.php', contentDiv);
+  }else if (page === 'addJewelry') {
     loadPhpPage('addJewelry.php', contentDiv);
   } else if (page === 'productmanger') {
     loadPhpPage('productmanger.php', contentDiv);
@@ -124,7 +126,7 @@
       xhttp.send();
     }
     function logout() {
-    window.location.href ='loginmanger.php';
+    window.location.href ='login.php';
 }
 
     // Prevent sidebar from minimizing when clicking buttons
@@ -137,5 +139,6 @@
     });
  
   </script>
+  
 </body>
 </html>

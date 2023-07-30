@@ -245,7 +245,7 @@
         <div class="design-item">
                 <div class="design-img">
                 <div><a href="discount.php"><img src="https://img.freepik.com/premium-photo/part-large-display-with-various-jewelry-items-discount-sign_274679-31301.jpg?w=2000" width="260" height="260" /></div>
-                
+                <span>Packages</span>
         </div>
         </div>
         </div>

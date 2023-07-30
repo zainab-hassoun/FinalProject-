@@ -1,5 +1,7 @@
 <html>
-
+<?php
+date_default_timezone_set('UTC'); // Set your desired timezone
+?>
 </head>
 <meta charset="utf-8">
           <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
@@ -71,41 +73,122 @@
         }
       }
     ?>
+
    </i></a></li> 
 </span>
 </ul>
 
-   <div class="container">
-   
-   <table style="color:#9d8189; font-family: serif;" class="table">
-    <tr>
-      <th  scope="col">username</th>
-      <th scope="col">Image</th>
-      <th scope="col">Name</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Price</th>
-    </tr>
-    <?php
+<div class="container">
+    <table style="color:#9d8189; font-family: serif;" class="table">
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Order Number</th>
+            <th scope="col">username</th>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+        </tr>
 
-    $con=mysqli_connect("localhost","root","1234","loginproject");
-    $sum=0;
-    if(isset($_SESSION['email'])){
-    $ss = $_SESSION['email'];
-    $result1 = mysqli_query($con,"SELECT * FROM `payment1` where user_id='".  $ss."'"); 
-        while($row = mysqli_fetch_array($result1)){
-          $sum=$row['price']*$row['quantity'];
-          echo "<tr>";
-          echo "<td>".$row['user_id']."</td>";
-          echo "<td> <img width='56px' src='".$row['image']."' name='image'></td>";
-          echo "<td>".$row['name']."</td>";
-          echo "<td> ".$row['quantity']."</td>";
-          echo "<td>".$sum."$</td>"; 
-        echo "</tr>";
-  
-      }
+    <?php
+// function formatDate($dateString, $format = 'd-m-Y')
+// {
+//     $dateTime = DateTime::createFromFormat('Y-m-d', $dateString);
+//     if ($dateTime === false) {
+//         // Try parsing in 'd-m-Y' format
+//         $dateTime = DateTime::createFromFormat('d-m-Y', $dateString);
+//         if ($dateTime === false || !checkdate($dateTime->format('m'), $dateTime->format('d'), $dateTime->format('Y'))) {
+//             // Error in parsing date or invalid date, fallback to original string
+//             return $dateString;
+//         }
+//     }
+//     return $dateTime->format($format);
+// }
+// function extractTime($dateTimeString)
+// {
+//     $dateTimeParts = explode(' ', $dateTimeString);
+//     return isset($dateTimeParts[1]) ? $dateTimeParts[1] : '';
+// }
+
+//
+
+function formatDate($dateString, $format = 'd-m-Y')
+{
+    $dateTime = DateTime::createFromFormat('Y-m-d', $dateString);
+    if ($dateTime === false) {
+        // Try parsing in 'd-m-Y' format
+        $dateTime = DateTime::createFromFormat('d-m-Y', $dateString);
+        if ($dateTime === false || !checkdate($dateTime->format('m'), $dateTime->format('d'), $dateTime->format('Y'))) {
+            // Error in parsing date or invalid date, fallback to original string
+            return $dateString;
+        }
     }
-    ?>  
-    </table>
+    return $dateTime->format($format);
+}
+
+function extractTime($dateTimeString)
+{
+    $dateTimeParts = explode(' ', $dateTimeString);
+    return isset($dateTimeParts[1]) ? $dateTimeParts[1] : '';
+}
+
+// Get the current date and time
+$currentDateTime = date('Y-m-d H:i:s');
+
+// Format and display the current date and time
+$formattedDate = formatDate($currentDateTime, 'd-m-Y');
+$currentTime = extractTime($currentDateTime);
+
+// echo 'Current Date: ' . $formattedDate . '<br>';
+// echo 'Current Time: ' . $currentTime . '<br>';
+
+ ?>
+<?php
+if (isset($_SESSION['email'])) {
+  $ss = $_SESSION['email'];
+  $result1 = mysqli_query($con, "SELECT * FROM `payment1` where user_id='" . $ss . "'");
+  $prevDate = null;
+  $orderCount = 1;
+
+  while ($row = mysqli_fetch_array($result1)) {
+      $sum = $row['price'] * $row['quantity'];
+      $dateTime = $row['time']; // Assuming 'date' column contains both date and time
+      $date = formatDate($dateTime, 'd-m-Y'); // Extract the date from the dateTime
+
+      if ($date !== $prevDate) {
+          // If the date is different from the previous date, it's a new order/package
+          $prevDate = $date;
+          $orderCount = 1; // Reset the order count for each new date
+          ?> 
+          <!-- Start of the order row -->
+          <tr>
+              <td><?php echo formatDate($row['date'], 'd-m-Y'); ?></td>
+              <td><?php echo 'הזמנה '  ?></td>
+              <td><?php echo $row['user_id']; ?></td>
+          </tr>
+          <!-- End of the order row -->
+          <?php
+        } else {
+            // If the date is the same as the previous date, it's the same order/package
+            $orderCount++; // Increment the order count for the same date
+        }
+        ?>
+      <!-- Start of the product row -->
+      <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><img width='56px' src='<?php echo isset($row['image']) ? $row['image'] : ''; ?>' name='image'></td>
+          <td><?php echo isset($row['name']) ? $row['name'] : ''; ?></td>
+          <td><?php echo isset($row['quantity']) ? $row['quantity'] : ''; ?></td>
+          <td><?php echo $sum . "$"; ?></td>
+      </tr>
+      <!-- End of the product row -->
+      <?php
+  }
+}
+?>
+ </table>
     </center>
   </div>
     </body>

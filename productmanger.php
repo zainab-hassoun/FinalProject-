@@ -110,6 +110,7 @@ if (!$con) {
     }
 
 
+
     .design-content {
         margin: 2rem 0;
     }
@@ -147,23 +148,38 @@ if (!$con) {
         color: #fff;
         padding: 0.2rem 1rem;
     }
-
-    .btn1 {
-        width: 15%;
+.btn2{
+    width: 40%;
         border-radius: 20px;
-        background-color: #f5ebe0;
-        color: #9d8189;
+        background-color:#9d8189 ;
+        color: #f5ebe0;
         padding: 10px 14px;
         margin: 20px 0;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-    }
+}
+  
 </style>
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <body style="background-color: #fbf7f3">
+<script>
+    function toggleFullName(element) {
+        var cardBody = element.parentElement;
+        var fullNameSpan = cardBody.querySelector('.full-name');
+
+        // Toggle the visibility of the full name
+        if (fullNameSpan.style.display === 'none') {
+            fullNameSpan.style.display = 'inline';
+            element.innerHTML = '...';
+        } else {
+            fullNameSpan.style.display = 'none';
+            element.innerHTML = '...';
+        }
+    }
+</script>
     <section>
         <div class="row itemsBlock">
             <?php
@@ -176,22 +192,30 @@ if (!$con) {
                 $img = $row['image'];
                 $price = $row['price'];
                 $amount = $row['amount'];
-                echo '
+                ?>
                 <div class="col-6 col-md-3 col-lg-3 col-xl-3">
                   <div class="card-body">
-                    <img class="card-img-top" src="' . $img . '">
-                    <h3 class="card-title" align="center">' . $name . '</h3>
-                    <p class="card-text">Price: ' . $price . '$</p>
-                    <p class="card-text">Quantity: ' . $amount . '</p>
+                    <img class="card-img-top" src="<?php echo $img?>">
+                    <h5 class="card-title">
+                    <span class="short-name"><?php echo substr($name, 0, 15); ?></span>
+                    <?php if (strlen($name) > 15) { ?>
+                        <span class="read-more" onclick="toggleFullName(this)">...</span>
+                    <?php } ?>
+                    <span class="full-name" style="display: none;"><?php echo $name; ?></span>
+                </h5>
+                    <p class="card-text">Price: <?php echo $price ?>$</p>
+                    <p class="card-text">Quantity: <?php echo $amount ?>
+                
+                </p>
                   </div>
-                  <button class="btn btn-primary">
+                  <button class="btn2">
                     <a href="Updatejewelry.php?updateidm=' . $id . '" class="text-light">Update</a>
                   </button>
-                  <button class="btn btn-danger">
+                  <button class="btn2">
                     <a href="removejewelry.php?deleteidm=' . $id . '" class="text-light">Delete</a>
                   </button>
                   <br>
-                </div>';
+                </div><?php
             }
             ?>
         </div>
@@ -207,23 +231,32 @@ if (!$con) {
             $img = $row['image'];
             $price = $row['price'];
             $amount = $row['amount'];
-            echo '
-            <div class="col-6 col-md-3 col-lg-3 ">
-              <div class="card-body">
-                  <img class="card-img-top" src="' . $img . '">
-                  <h3 class="card-title" align="center">' . $name . '</h3>
-                  <p class="card-text">Price: ' . $price . '$</p>
-                  <p class="card-text">Quantity: ' . $amount . '</p>
-              </div>
-              <button class="btn btn-primary"><a href="Updatejewelrybarcelet.php?
-              updateidm=' . $id . '" class="text-light"> Update</a></button>
-              <button class="btn btn-danger"><a href="removejewelrybarcelet.php?
-              deleteidm=' . $id . '" class="text-light" >Delete</a></button>
-              <br>
-            </div>';
-        }
-        
-        ?>
+            ?>
+                <div class="col-6 col-md-3 col-lg-3 col-xl-3">
+                  <div class="card-body">
+                    <img class="card-img-top" src="<?php echo $img?>">
+                    <h5 class="card-title">
+                    <span class="short-name"><?php echo substr($name, 0, 15); ?></span>
+                    <?php if (strlen($name) > 15) { ?>
+                        <span class="read-more" onclick="toggleFullName(this)">...</span>
+                    <?php } ?>
+                    <span class="full-name" style="display: none;"><?php echo $name; ?></span>
+                </h5>
+                    <p class="card-text">Price: <?php echo $price ?>$</p>
+                    <p class="card-text">Quantity: <?php echo $amount ?>
+                
+                </p>
+                  </div>
+                  <button class="btn2">
+                    <a href="Updatejewelry.php?updateidm=' . $id . '" class="text-light">Update</a>
+                  </button>
+                  <button class="btn2">
+                    <a href="removejewelry.php?deleteidm=' . $id . '" class="text-light">Delete</a>
+                  </button>
+                  <br>
+                </div><?php
+            }
+            ?>
           </div>
           
         <div class="row itemsBlock">
@@ -237,22 +270,33 @@ if (!$con) {
             $img = $row['image'];
             $price = $row['price'];
             $amount = $row['amount'];
-            echo '
-            <div class="col-6 col-md-3 col-lg-3 col-xl-3">
-              <div class="card-body">
-                  <img class="card-img-top" src="' . $img . '">
-                  <h3 class="card-title" align="center">' . $name . '</h3>
-                  <p class="card-text">Price: ' . $price . '$</p>
-                  <p class="card-text">Quantity: ' . $amount . '</p>
-              </div>
-              <button class="btn btn-primary"><a href="Updatejewelryearing.php?
-              updateidm=' . $id . '" class="text-light"> Update</a></button>
-              <button class="btn btn-danger"><a href="removejewelryearing.php?
-              deleteidm=' . $id . '" class="text-light" >Delete</a></button>
-              <br>
-            </div>';
-        } ?>
-
+            ?>
+                <div class="col-6 col-md-3 col-lg-3 col-xl-3">
+                  <div class="card-body">
+                    <img class="card-img-top" src="<?php echo $img?>">
+                    <h5 class="card-title">
+                    <span class="short-name"><?php echo substr($name, 0, 15); ?></span>
+                    <?php if (strlen($name) > 15) { ?>
+                        <span class="read-more" onclick="toggleFullName(this)">...</span>
+                    <?php } ?>
+                    <span class="full-name" style="display: none;"><?php echo $name; ?></span>
+                </h5>
+                    <p class="card-text">Price: <?php echo $price ?>$</p>
+                    <p class="card-text">Quantity: <?php echo $amount ?>
+                
+                </p>
+                  </div>
+                  <button class="btn2">
+                    <a href="Updatejewelry.php?updateidm=' . $id . '" class="text-light">Update</a>
+                  </button>
+                  <button class="btn2">
+                    <a href="removejewelry.php?deleteidm=' . $id . '" class="text-light">Delete</a>
+                  </button>
+                  <br>
+                </div><?php
+            }
+            ?>
+            </div>
         <?php
         $sql = "SELECT * FROM `necklace`";
         $result = mysqli_query($con, $sql);
@@ -263,22 +307,33 @@ if (!$con) {
             $img = $row['image'];
             $price = $row['price'];
             $amount = $row['amount'];
-            echo '
+            ?>
             <div class="col-6 col-md-3 col-lg-3 col-xl-3">
               <div class="card-body">
-                  <img class="card-img-top" src="' . $img . '">
-                  <h3 class="card-title" align="center">' . $name . '</h3>
-                  <p class="card-text">Price: ' . $price . '$</p>
-                  <p class="card-text">Quantity: ' . $amount . '</p>
+                <img class="card-img-top" src="<?php echo $img?>">
+                <h5 class="card-title">
+                <span class="short-name"><?php echo substr($name, 0, 15); ?></span>
+                <?php if (strlen($name) > 15) { ?>
+                    <span class="read-more" onclick="toggleFullName(this)">...</span>
+                <?php } ?>
+                <span class="full-name" style="display: none;"><?php echo $name; ?></span>
+            </h5>
+                <p class="card-text">Price: <?php echo $price ?>$</p>
+                <p class="card-text">Quantity: <?php echo $amount ?>
+            
+            </p>
               </div>
-              <button class="btn btn-primary"><a href="Updatejewelrynecklace.php?
-              updateidm=' . $id . '" class="text-light"> Update</a></button>
-              <button class="btn btn-danger"><a href="removejewelrynecklace.php?
-              deleteidm=' . $id . '" class="text-light" >Delete</a></button>
+              <button class="btn2">
+                <a href="Updatejewelry.php?updateidm=' . $id . '" class="text-light">Update</a>
+              </button>
+              <button class="btn2">
+                <a href="removejewelry.php?deleteidm=' . $id . '" class="text-light">Delete</a>
+              </button>
               <br>
-            </div>';
-        } ?>
-        
+            </div><?php
+        }
+        ?>
+        </div>
         <?php
         $sql = "SELECT * FROM `anklet`";
         $result = mysqli_query($con, $sql);
@@ -289,22 +344,33 @@ if (!$con) {
             $img = $row['image'];
             $price = $row['price'];
             $amount = $row['amount'];
-            echo '
-            <div class="col-6 col-md-3 col-lg-3 col-xl-3">
-              <div class="card-body">
-                  <img class="card-img-top" src="' . $img . '">
-                  <h3 class="card-title" align="center">' . $name . '</h3>
-                  <p class="card-text">Price: ' . $price . '$</p>
-                  <p class="card-text">Quantity: ' . $amount . '</p>
-              </div>
-              <button class="btn btn-primary"><a href="Updatejewelryanklet.php?
-              updateidm=' . $id . '" class="text-light"> Update</a></button>
-              <button class="btn btn-danger"><a href="removejewelryanklet.php?
-              deleteidm=' . $id . '" class="text-light" >Delete</a></button>
-              <br>
-            </div>';
-        } ?>
-        
+            ?>
+                <div class="col-6 col-md-3 col-lg-3 col-xl-3">
+                  <div class="card-body">
+                    <img class="card-img-top" src="<?php echo $img?>">
+                    <h5 class="card-title">
+                    <span class="short-name"><?php echo substr($name, 0, 15); ?></span>
+                    <?php if (strlen($name) > 15) { ?>
+                        <span class="read-more" onclick="toggleFullName(this)">...</span>
+                    <?php } ?>
+                    <span class="full-name" style="display: none;"><?php echo $name; ?></span>
+                </h5>
+                    <p class="card-text">Price: <?php echo $price ?>$</p>
+                    <p class="card-text">Quantity: <?php echo $amount ?>
+                
+                </p>
+                  </div>
+                  <button class="btn2">
+                    <a href="Updatejewelry.php?updateidm=' . $id . '" class="text-light">Update</a>
+                  </button>
+                  <button class="btn2">
+                    <a href="removejewelry.php?deleteidm=' . $id . '" class="text-light">Delete</a>
+                  </button>
+                  <br>
+                </div><?php
+            }
+            ?>
+            </div>
         <?php
         $sql = "SELECT * FROM `handmade`";
         $result = mysqli_query($con, $sql);
@@ -315,21 +381,33 @@ if (!$con) {
             $img = $row['image'];
             $price = $row['price'];
             $amount = $row['amount'];
-            echo '
-            <div class="col-6 col-md-3 col-lg-3 col-xl-3">
-              <div class="card-body">
-                  <img class="card-img-top" src="' . $img . '">
-                  <h3 class="card-title" align="center">' . $name . '</h3>
-                  <p class="card-text">Price: ' . $price . '$</p>
-                  <p class="card-text">Quantity: ' . $amount . '</p>
-              </div>
-              <button class="btn btn-primary"><a href="Updatejewelryanklet.php?
-              updateidm=' . $id . '" class="text-light"> Update</a></button>
-              <button class="btn btn-danger"><a href="removejewelryanklet.php?
-              deleteidm=' . $id . '" class="text-light" >Delete</a></button>
-              <br>
-            </div>';
-        } ?>
+            ?>
+                <div class="col-6 col-md-3 col-lg-3 col-xl-3">
+                  <div class="card-body">
+                    <img class="card-img-top" src="<?php echo $img?>">
+                    <h5 class="card-title">
+                    <span class="short-name"><?php echo substr($name, 0, 15); ?></span>
+                    <?php if (strlen($name) > 15) { ?>
+                        <span class="read-more" onclick="toggleFullName(this)">...</span>
+                    <?php } ?>
+                    <span class="full-name" style="display: none;"><?php echo $name; ?></span>
+                </h5>
+                    <p class="card-text">Price: <?php echo $price ?>$</p>
+                    <p class="card-text">Quantity: <?php echo $amount ?>
+                
+                </p>
+                  </div>
+                  <button class="btn2">
+                    <a href="Updatejewelry.php?updateidm=' . $id . '" class="text-light">Update</a>
+                  </button>
+                  <button class="btn2">
+                    <a href="removejewelry.php?deleteidm=' . $id . '" class="text-light">Delete</a>
+                  </button>
+                  <br>
+                </div><?php
+            }
+            ?>
+            </div>
         
         <?php
         $sql = "SELECT * FROM `party`";
@@ -341,22 +419,32 @@ if (!$con) {
             $img = $row['image'];
             $price = $row['price'];
             $amount = $row['amount'];
-            echo '
-            <div class="col-6 col-md-3 col-lg-3 col-xl-3">
-              <div class="card-body">
-                  <img class="card-img-top" src="' . $img . '">
-                  <h3 class="card-title" align="center">' . $name . '</h3>
-                  <p class="card-text">Price: ' . $price . '$</p>
-                  <p class="card-text">Quantity: ' . $amount . '</p>
-              </div>
-              <button class="btn btn-primary"><a href="Updatejewelryanklet.php?
-              updateidm=' . $id . '" class="text-light"> Update</a></button>
-              <button class="btn btn-danger"><a href="removejewelryanklet.php?
-              deleteidm=' . $id . '" class="text-light" >Delete</a></button>
-              <br>
-            </div>';
-        } ?>
-        
+            ?>
+                <div class="col-6 col-md-3 col-lg-3 col-xl-3">
+                  <div class="card-body">
+                    <img class="card-img-top" src="<?php echo $img?>">
+                    <h5 class="card-title">
+                    <span class="short-name"><?php echo substr($name, 0, 15); ?></span>
+                    <?php if (strlen($name) > 15) { ?>
+                        <span class="read-more" onclick="toggleFullName(this)">...</span>
+                    <?php } ?>
+                    <span class="full-name" style="display: none;"><?php echo $name; ?></span>
+                </h5>
+                    <p class="card-text">Price: <?php echo $price ?>$</p>
+                    <p class="card-text">Quantity: <?php echo $amount ?>
+                
+                </p>
+                  </div>
+                  <button class="btn2">
+                    <a href="Updatejewelry.php?updateidm=' . $id . '" class="text-light">Update</a>
+                  </button>
+                  <button class="btn2">
+                    <a href="removejewelry.php?deleteidm=' . $id . '" class="text-light">Delete</a>
+                  </button>
+                  <br>
+                </div><?php
+            }
+            ?></div>
         <?php
         $sql = "SELECT * FROM `discount`";
         $result = mysqli_query($con, $sql);
@@ -367,21 +455,32 @@ if (!$con) {
             $img = $row['image'];
             $price = $row['price'];
             $amount = $row['amount'];
-            echo '
+            ?>
             <div class="col-6 col-md-3 col-lg-3 col-xl-3">
               <div class="card-body">
-                  <img class="card-img-top" src="' . $img . '">
-                  <h3 class="card-title" align="center">' . $name . '</h3>
-                  <p class="card-text">Price: ' . $price . '$</p>
-                  <p class="card-text">Quantity: ' . $amount . '</p>
+                <img class="card-img-top" src="<?php echo $img?>">
+                <h5 class="card-title">
+                <span class="short-name"><?php echo substr($name, 0, 15); ?></span>
+                <?php if (strlen($name) > 15) { ?>
+                    <span class="read-more" onclick="toggleFullName(this)">...</span>
+                <?php } ?>
+                <span class="full-name" style="display: none;"><?php echo $name; ?></span>
+            </h5>
+                <p class="card-text">Price: <?php echo $price ?>$</p>
+                <p class="card-text">Quantity: <?php echo $amount ?>
+            
+            </p>
               </div>
-              <button class="btn btn-primary"><a href="Updatejewelryanklet.php?
-              updateidm=' . $id . '" class="text-light"> Update</a></button>
-              <button class="btn btn-danger"><a href="removejewelryanklet.php?
-              deleteidm=' . $id . '" class="text-light" >Delete</a></button>
+              <button class="btn2">
+                <a href="Updatejewelry.php?updateidm=' . $id . '" class="text-light">Update</a>
+              </button>
+              <button class="btn2">
+                <a href="removejewelry.php?deleteidm=' . $id . '" class="text-light">Delete</a>
+              </button>
               <br>
-            </div>';
-        } ?>
+            </div><?php
+        }
+        ?>
          </div>
     </section>
 </body>

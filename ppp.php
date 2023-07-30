@@ -1,13 +1,14 @@
 
-<?php 
+<?php
 session_start();
-$con=mysqli_connect("localhost","root","1234","loginproject");
-//check if user is logged in
-if(isset($_SESSION['email'])){
+$con = mysqli_connect("localhost", "root", "1234", "loginproject");
+
+// Check if user is logged in
+if (isset($_SESSION['email'])) {
     $username = $_SESSION['email'];
-}else{
-    //redirect to login page if user is not logged in
-    header("Location:login.php");
+} else {
+    // Redirect to the login page if the user is not logged in
+    header("Location: login.php");
     exit();
 }
 ?><?php
@@ -310,8 +311,6 @@ if(isset($_POST['submit'])){
 </html>
 
                 <?php
-
-
 $con = mysqli_connect("localhost","root","1234","loginproject");
 if(isset($_POST['submit'])){
     // check if user is logged in

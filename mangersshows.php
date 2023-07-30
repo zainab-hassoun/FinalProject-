@@ -69,20 +69,20 @@ body {
 .card-text{
     font-family: "Roboto", sans-serif;
 }
-.btn1{
-    width: 15%;
-    border-radius: 20px;
- 
-  background-color: #f5ebe0;
-    color:#9d8189;
-  padding: 10px 14px ;
-  margin: 20px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+
 section{
     margin:20px;
+}
+.btn2{
+    height: 25%;
+        border-radius: 0px;
+        background-color:#9d8189 ;
+        color: #f5ebe0;
+       
+        
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
 }
 </style>
 </head>
@@ -111,8 +111,8 @@ section{
                                 <p class="card-text">Email: ' . $email . '</p>
                                 <p class="card-text">Phone: ' . $phone . '</p>
                                 <p class="card-text">Password: ' . $password . '</p>
-                                <button class="btn btn-primary"><a href="Updatemanger.php?updateid=' . $id . '" class="text-light">Update</a></button>
-                                <button class="btn btn-danger"><a href="removemangers.php?deleteid=' . $id . '" class="text-light">Delete</a></button>
+                                <button class="btn2"><a href="Updatemanger.php?updateid=' . $id . '" class="text-light">Update</a></button>
+                                <button class="btn2"><a href="removemangers.php?deleteid=' . $id . '" class="text-light">Delete</a></button>
                             </div>
                         </div>
                     </div>

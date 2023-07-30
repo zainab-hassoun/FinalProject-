@@ -11,10 +11,11 @@
                $Cimg=$row['image'];
                $Cqua=$row['quantity'];
                $Cprice=$row['price'];
-               $result1 = mysqli_query($con,"INSERT INTO `payment1` VALUES('$Cid','$Cname','$Cimg','$Cqua','$Cprice','$user')" );
+               $CDATE=$row['date'];
+               $Ctime=$row['time'];
+               $result1 = mysqli_query($con,"INSERT INTO `payment1` VALUES('$Cid','$Cname','$Cimg','$Cqua','$Cprice','$user','$CDATE','$Ctime')" );
                header('location:payment.php');
            }
 
         
 ?>
-

@@ -160,6 +160,17 @@ transition: all 200ms;
   h1{
     color:#9d8189;
   }
+  .btn2{
+    width: 20%;
+        border-radius: 20px;
+        background-color:#9d8189 ;
+        color: #f5ebe0;
+        padding: 10px 14px;
+        margin: 20px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+}
 </style>
 <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -193,9 +204,8 @@ transition: all 200ms;
       </li>
       <li>
         
-      <button class="btn btn-primary" class="text-light" style="margin:10px "  type="submit" name="submit" value="Update"> Update</a></button>
+      <button class="btn2" class="text-light" style="margin:10px "  type="submit" name="submit" value="Update"> Update</a></button>
     
-      <button  class="btn btn-danger"><a href="manger.php" style="margin:5px " class="text-light">Log Out</a></button> </li>
     </ul>
   </form>
 </div>
