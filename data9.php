@@ -5,7 +5,7 @@ if (!$con) {
 }
 
 // Fetch data from the database
-$result = mysqli_query($con, "SELECT name_p, amount FROM tblproduct");
+$result = mysqli_query($con, "SELECT name_p, amount FROM necklace");
 
 // Prepare the data in PHP array format
 $data = array(['Product Type', 'Percentage Sold']);
@@ -15,7 +15,7 @@ while ($row = mysqli_fetch_array($result)) {
   $amount = (int)$row['amount'];
   $totalAmount += $amount;
 
-  if ($amount > $maxAmount) {
+  if ($amount >= $maxAmount) {
     $maxAmount = $amount;
   }
 

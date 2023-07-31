@@ -76,10 +76,10 @@
   <div class="sidebar">
   
     <h2>Jewelry</h2>
-    <button onclick="showPage('prcent')">Prcent</button><br><br>
+    <button onclick="showPage('prcent')">Percent</button><br><br>
     <button onclick="showPage('addJewelry')">Add Jewelry</button><br><br>
     <button onclick="showPage('productmanger')">Remove Jewelries and Update</button><br><br>
-    <button onclick="showPage('status')">Hostory</button><br><br>
+    <button onclick="showPage('status')">History</button><br><br>
     <button onclick="showPage('users')">Users</button><br><br>
     <button onclick="showPage('managers')">Managers</button><br><br>
     <button onclick="logout()">Log Out</button><br><br>
