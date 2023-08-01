@@ -5,7 +5,7 @@ if (!$con) {
 }
 
 // Fetch data from the database
-$result = mysqli_query($con, "SELECT name_p, amount FROM necklace");
+$result = mysqli_query($con, "SELECT name_p, amount FROM neclkace");
 
 // Prepare the data in PHP array format
 $data = array(['Product Type', 'Percentage Sold']);

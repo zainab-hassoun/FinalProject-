@@ -22,7 +22,7 @@
           }
         }
       };
-      xhr.open('GET', 'data9.php', true);
+      xhr.open('GET', 'data910.php', true);
       xhr.send();
     }
 

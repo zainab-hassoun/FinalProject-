@@ -33,7 +33,16 @@ date_default_timezone_set('UTC'); // Set your desired timezone
         border-radius: 25%;
         margin-left: 590px;
     }
-
+    button{
+        
+        width: 90px;
+        border-radius: 0px;
+        background-color:#9d8189 ;
+        color: #f5ebe0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 </style>
       	
 <section>
@@ -78,120 +87,100 @@ date_default_timezone_set('UTC'); // Set your desired timezone
 </span>
 </ul>
 
-<div class="container">
-    <table style="color:#9d8189; font-family: serif;" class="table">
+        <div class="container">
+    <table id="orderTable" class="table">
         <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Order Number</th>
-            <th scope="col">username</th>
-            <th scope="col">Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
+            <th style="color:#9d8189;font-family:serif;" scope="col" class="clickable">Date</th>
+            <th style="color:#9d8189;font-family:serif;" scope="col" class="additional-column">username</th>
+            <th style="color:#9d8189;font-family:serif;" scope="col" class="additional-column">Image</th>
+            <th style="color:#9d8189;font-family:serif;" scope="col" class="additional-column">Name</th>
+            <th style="color:#9d8189;font-family:serif;" scope="col" class="additional-column">Quantity</th>
+            <th style="color:#9d8189;font-family:serif;" scope="col" class="additional-column">Price</th>
         </tr>
+        <?php
 
-    <?php
-// function formatDate($dateString, $format = 'd-m-Y')
-// {
-//     $dateTime = DateTime::createFromFormat('Y-m-d', $dateString);
-//     if ($dateTime === false) {
-//         // Try parsing in 'd-m-Y' format
-//         $dateTime = DateTime::createFromFormat('d-m-Y', $dateString);
-//         if ($dateTime === false || !checkdate($dateTime->format('m'), $dateTime->format('d'), $dateTime->format('Y'))) {
-//             // Error in parsing date or invalid date, fallback to original string
-//             return $dateString;
-//         }
-//     }
-//     return $dateTime->format($format);
-// }
-// function extractTime($dateTimeString)
-// {
-//     $dateTimeParts = explode(' ', $dateTimeString);
-//     return isset($dateTimeParts[1]) ? $dateTimeParts[1] : '';
-// }
+        if (isset($_SESSION['email'])) {
+            $ss = $_SESSION['email'];
+            $result1 = mysqli_query($con, "SELECT * FROM `payment1` where user_id='" . $ss . "'");
+            $datesArray = array();
+            $rowsArray = array();
 
-//
+            while ($row = mysqli_fetch_array($result1)) {
+                $sum = $row['price'] * $row['quantity'];
+                $current_date = $row['order_date'];
 
-function formatDate($dateString, $format = 'd-m-Y')
-{
-    $dateTime = DateTime::createFromFormat('Y-m-d', $dateString);
-    if ($dateTime === false) {
-        // Try parsing in 'd-m-Y' format
-        $dateTime = DateTime::createFromFormat('d-m-Y', $dateString);
-        if ($dateTime === false || !checkdate($dateTime->format('m'), $dateTime->format('d'), $dateTime->format('Y'))) {
-            // Error in parsing date or invalid date, fallback to original string
-            return $dateString;
-        }
-    }
-    return $dateTime->format($format);
-}
+                if (!in_array($current_date, $datesArray)) {
+                    $datesArray[] = $current_date;
+                    $rowsArray[$current_date] = array();
+                }
 
-function extractTime($dateTimeString)
-{
-    $dateTimeParts = explode(' ', $dateTimeString);
-    return isset($dateTimeParts[1]) ? $dateTimeParts[1] : '';
-}
+                $rowsArray[$current_date][] = $row;
+            }
 
-// Get the current date and time
-$currentDateTime = date('Y-m-d H:i:s');
+            foreach ($datesArray as $date) {
+                ?>
+                <tr>
+                    <td style="color:#9d8189;font-family:serif;" scope="col" class="clickable"><?php echo $date; ?></td>
+                </tr>
+                <?php
+                foreach ($rowsArray[$date] as $row) {
+                    $sum = $row['price'] * $row['quantity'];
+                    ?>
+<tr class="additional-row">
+    <td></td>
+    <td style="color:#9d8189;font-family:serif;"  class="additional-column"><?php echo $row['user_id']; ?></td>
+    <td style="color:#9d8189;font-family:serif;" class="additional-column"><img width="56px" src="<?php echo isset($row['image']) ? $row['image'] : ''; ?>" name="image"></td>
+    <td style="color:#9d8189;font-family:serif;" class="additional-column"><?php echo isset($row['name']) ? $row['name'] : ''; ?></td>
+    <td style="color:#9d8189;font-family:serif;" class="additional-column"><?php echo isset($row['quantity']) ? $row['quantity'] : ''; ?></td>
+    <td style="color:#9d8189;font-family:serif;" class="additional-column"><?php echo $sum . "$"; ?></td>
 
-// Format and display the current date and time
-$formattedDate = formatDate($currentDateTime, 'd-m-Y');
-$currentTime = extractTime($currentDateTime);
+<td style="color:#9d8189;font-family:serif;" class="additional-column">
+    <form action="" method="post">
+        <input type="hidden" name="order_id" value="<?php echo $row['id']; ?>">
+        <?php
+        if (isset($_POST['confirm_order']) && $_POST['order_id'] == $row['id']) {
+            if ($row['isblocked'] == 1) {
+                echo '<button type="button" disabled>Approved</button>';
+            } else {
+                // Update 'isblocked' status in the database to 1 (Approved)
+                $order_id = $_POST['order_id'];
+                $update_query = "UPDATE payment1 SET isblocked = 1 WHERE id = $order_id";
+                mysqli_query($con, $update_query);
 
-// echo 'Current Date: ' . $formattedDate . '<br>';
-// echo 'Current Time: ' . $currentTime . '<br>';
-
- ?>
-<?php
-if (isset($_SESSION['email'])) {
-  $ss = $_SESSION['email'];
-  $result1 = mysqli_query($con, "SELECT * FROM `payment1` where user_id='" . $ss . "'");
-  $prevDate = null;
-  $orderCount = 1;
-
-  while ($row = mysqli_fetch_array($result1)) {
-      $sum = $row['price'] * $row['quantity'];
-      $dateTime = $row['time']; // Assuming 'date' column contains both date and time
-      $date = formatDate($dateTime, 'd-m-Y'); // Extract the date from the dateTime
-
-      if ($date !== $prevDate) {
-          // If the date is different from the previous date, it's a new order/package
-          $prevDate = $date;
-          $orderCount = 1; // Reset the order count for each new date
-          ?> 
-          <!-- Start of the order row -->
-          <tr>
-              <td><?php echo formatDate($row['date'], 'd-m-Y'); ?></td>
-              <td><?php echo 'הזמנה '  ?></td>
-              <td><?php echo $row['user_id']; ?></td>
-          </tr>
-          <!-- End of the order row -->
-          <?php
+                echo '<button type="button" disabled>Approved</button>';
+            }
         } else {
-            // If the date is the same as the previous date, it's the same order/package
-            $orderCount++; // Increment the order count for the same date
+            if ($row['isblocked'] == 1) {
+                echo '<button type="button" disabled>Approved</button>';
+            } else {
+                echo '<button type="submit" name="confirm_order">Confirm Order</button>';
+            }
         }
         ?>
-      <!-- Start of the product row -->
-      <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><img width='56px' src='<?php echo isset($row['image']) ? $row['image'] : ''; ?>' name='image'></td>
-          <td><?php echo isset($row['name']) ? $row['name'] : ''; ?></td>
-          <td><?php echo isset($row['quantity']) ? $row['quantity'] : ''; ?></td>
-          <td><?php echo $sum . "$"; ?></td>
-      </tr>
-      <!-- End of the product row -->
-      <?php
-  }
-}
-?>
- </table>
-    </center>
-  </div>
-    </body>
-</html>
-   
-   
+    </form>
+          </td>
+                </tr>
+                    <?php     
+    }
+            }
+        }
+        ?>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Hide all additional rows initially
+        $(".additional-row").hide();
+
+        // Register click event on the "Date" column header
+        $(".clickable").click(function() {
+            // Hide all additional rows
+            $(".additional-row").hide();
+
+            // Show the additional rows related to the clicked date
+            $(this).closest("tr").nextUntil("tr:not(.additional-row)").toggle();
+        });
+    });
+</script>
+
