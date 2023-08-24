@@ -371,7 +371,7 @@ if (mysqli_num_rows($result) > 0) {
         </div>
         <div class="col-sm-6">
             <div class="card-body">
-                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name']; ?></span></h3><br>
+                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name_p']; ?></span></h3><br>
                 <p class="card-text"><h3 style="color:#9d8189;font-family: serif;">Price: <span id="productPrice"><?php echo $row['price']; ?></span>$</h3></p><br>
                 <p class="card-text" id="productid" data-id="<?php echo $row['id']; ?>"></p><br>
                 <?php
@@ -395,7 +395,7 @@ if (mysqli_num_rows($result) > 0) {
 
                     foreach ($randomProducts as $index => $product) {
                         ?>
-                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name']; ?>" data-id="<?php echo $product['id']; ?>">
+                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name_p']; ?>" data-id="<?php echo $product['id']; ?>">
                             <img src="<?php echo $product['image']; ?>" alt="Product Image" width="150px">
                         </a>
                         <?php
@@ -413,7 +413,7 @@ if (mysqli_num_rows($result) > 0) {
             <a href="cart.php" style="color:#f5ebe0;">Back</a>
             </button>
              <button type="button" id="addToCartButton" class="btn1">
-            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name']; ?>">
+            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name_p']; ?>">
                Add To Cart </a>
             </button>
         </div>
@@ -557,7 +557,7 @@ if (mysqli_num_rows($result) > 0) {
             <a href="cart.php" style="color:#f5ebe0;">Back</a>
             </button>
              <button type="button" id="addToCartButton" class="btn1">
-            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name']; ?>">
+            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name_p']; ?>">
                Add To Cart </a>
             </button>
            
@@ -943,7 +943,7 @@ if (mysqli_num_rows($result) > 0) {
         </div>
         <div class="col-sm-6">
             <div class="card-body">
-                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name']; ?></span></h3><br>
+                <h3 class="card-title" style="color:#9d8189;font-family: serif;">Name: <span id="productname"><?php echo $row['name_p']; ?></span></h3><br>
                 <p class="card-text"><h3 style="color:#9d8189;font-family: serif;">Price: <span id="productPrice"><?php echo $row['price']; ?></span>$</h3></p><br>
                 <p class="card-text" id="productid" data-id="<?php echo $row['id']; ?>"></p><br>
 
@@ -968,7 +968,7 @@ if (mysqli_num_rows($result) > 0) {
 
                     foreach ($randomProducts as $index => $product) {
                         ?>
-                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name']; ?>" data-id="<?php echo $product['id']; ?>">
+                        <a href="#" class="image-link" data-index="<?php echo $index; ?>" data-price="<?php echo $product['price']; ?>" data-name="<?php echo $product['name_p']; ?>" data-id="<?php echo $product['id']; ?>">
                             <img src="<?php echo $product['image']; ?>" alt="Product Image" width="150px">
                         </a>
                         <?php
@@ -989,7 +989,7 @@ if (mysqli_num_rows($result) > 0) {
             <a href="cart.php" style="color:#f5ebe0;">Back</a>
             </button>
              <button type="button" id="addToCartButton" class="btn1">
-            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name']; ?>">
+            <a href="#" style="color:#f5ebe0;" class="image-link" data-id="<?php echo $row['id']; ?>" data-price="<?php echo $row['price']; ?>" data-name="<?php echo $row['name_p']; ?>">
                Add To Cart </a>
             </button>
            

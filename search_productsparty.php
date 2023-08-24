@@ -207,7 +207,7 @@ $amount = $row['amount'];
             <input type="hidden" name="id" value="<?php echo $id; ?>" />
             <input type="submit" name="update" value="Update" class="input1" />
     
-            <a href="inserttocart.php?id=<?php echo $id; ?>" style="color:#f5ebe0;"><button type="button" name="addtocart">Add To Cart</button></a>
+            <a href="inserttocartparty.php?id=<?php echo $id; ?>" style="color:#f5ebe0;"><button type="button" name="addtocart">Add To Cart</button></a>
           </form>
         </div>
         </div>

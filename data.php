@@ -15,9 +15,12 @@ while ($row = mysqli_fetch_array($result)) {
   $amount = (int)$row['amount'];
   $totalAmount += $amount;
 
-  if ($amount > $maxAmount) {
+  if ($amount >= $maxAmount) {
     $maxAmount = $amount;
   }
+  // if ($amount = 0) {
+  //   $maxAmount = $amount;
+  // }
 
   $data[] = [$row['name_p'], $amount];
 }
