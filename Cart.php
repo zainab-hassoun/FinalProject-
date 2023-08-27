@@ -241,7 +241,6 @@ transition: all 200ms;
       echo $sumprice1;
     }else{
     echo $sumprice;
-   
     }
     ?>$</h6></p>
     <a href="algortem.php?id=<?php echo $row['id'];?> "style="color:#f5ebe0; font-size:14px" ><button class="btn" >view more</a></button>
@@ -259,6 +258,98 @@ transition: all 200ms;
     </center>
     <section>
     <p class="card-text" ><h6 style="color:#9d8189;font-family: serif;">Total: <?php echo $total?>$</h6></p>
+    <style>
+        /* סגנון לכפתור */
+        #couponButton {
+            color: #f5ebe0;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* סגנון לכאשר עוברים מעל הכפתור בעכבר */
+        #couponButton:hover {
+            text-decoration: underline;
+        }
+
+        /* סגנון למורבע */
+        #couponMessage {
+            display: none;
+            background-color: #f5ebe0;
+            border: 1px solid #9d8189;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+      .card-text1{
+       
+border:none;
+
+  border: 1.5px solid #9d8189;
+  padding: 10px;
+  width: 150px;
+  height: 60px;
+display: inline-block;
+border-width: 0;
+
+cursor: pointer;
+font-family: Arial, sans-serif;
+font-size: 1em;
+height: 50px;
+padding: 0 25px;
+color:#f5ebe0;
+transition: all 200ms;
+      }
+    </style>
+</head>
+<body>
+<?php
+$newtotal = 0;
+if (isset($_POST['couponCode'])) {
+    $couponCode = $_POST['couponCode'];
+    
+    if ($couponCode == 'ZAINAB1' && $total >= 100 ) {
+        $newtotal = $total * (1 - 5 / 100);
+    } elseif ($couponCode == 'HEBA1'&& $total >= 2000 ) {
+        $newtotal = $total * (1 - 15 / 100);
+    }
+    else {
+        $newtotal = $total;
+      
+    }
+}
+?>
+
+<button id="couponButton" style="background-color: #9d8189;" type="button">coupon</button>
+<div id="couponMessage">
+    <form method="post">
+        <label class="card-text">Coupon's name:</label>
+        <input class="card-text1" type="text" name="couponCode" value="<?php echo isset($_POST['couponCode']) ? $_POST['couponCode'] : ''; ?>" />        <input class="card-text1" type="submit" value="Apply Coupon" />
+    </form>
+
+    <?php
+    if (isset($_POST['couponCode'])) {
+        if ($newtotal !== $total) {
+            echo "<p class='card-text'><h6 style='color:#9d8189;font-family: serif;'>New Total: " . $newtotal . "$</h6></p>";
+        } else {
+            echo "<p class='card-text'><h6 style='color:red;font-family: serif;'>Invalid Coupon</h6></p>";
+        }
+    }
+    ?>
+</div>
+
+
+    </div>
+
+    <script>
+        // משתמשים ב-JavaScript כדי לגרום לכפתור להציג הודעה כאשר לוחצים עליו
+        document.getElementById('couponButton').addEventListener('click', function() {
+            document.getElementById('couponMessage').style.display = 'block';
+        });
+    </script>
+
+    <br>
     <button type="button" ><a href="ppp.php?user_id=<?php echo $user;?>"style="color:#f5ebe0;">Buy</a></button>
     <input type="submit"  name="remove" value="delete all "style="color:#f5ebe0; font-size:15px"  class="input"/>
     <button type="button" ><a href="homeuser.php"style="color:#f5ebe0;">Back</a></button>

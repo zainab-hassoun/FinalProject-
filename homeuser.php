@@ -89,8 +89,59 @@
 </span>
 
 </ul>
-<img src="https://bnsec.bluenile.com/bluenile/is/image/bluenile/2023Q1-JSP-hero-desktop?$alloy_default$&wid=1944&hei=986&crop=1113,724,2965,1504&fmt=webp" width="1260" height="400" />
+<!-- <img src="https://bnsec.bluenile.com/bluenile/is/image/bluenile/2023Q1-JSP-hero-desktop?$alloy_default$&wid=1944&hei=986&crop=1113,724,2965,1504&fmt=webp" width="1260" height="400" /> -->
+
     <style>
+        #changingImage {
+            width: 1200px;
+            height: 400px;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1200px;
+            height: 400px;
+            background-color: rgba(0, 0, 0, 0.5); /* Adjust the transparency here */
+            display: none;
+        }
+
+        .container:hover .overlay {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img id="changingImage" src="https://bnsec.bluenile.com/bluenile/is/image/bluenile/2023Q1-JSP-hero-desktop?$alloy_default$&wid=1944&hei=986&crop=1113,724,2965,1504&fmt=webp" width="1200" height="400" />
+        <div class="overlay"></div>
+    </div>
+
+    <script>
+        const changingImage = document.getElementById("changingImage");
+        let currentImageIndex = 0;
+
+        // Define your image URLs here
+        const imageUrls = [
+            "img21.jpg",
+            "https://bnsec.bluenile.com/bluenile/is/image/bluenile/2023Q1-JSP-hero-desktop?$alloy_default$&wid=1944&hei=986&crop=1113,724,2965,1504&fmt=webp"
+        ];
+
+        function changeImage() {
+            currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
+            changingImage.src = imageUrls[currentImageIndex];
+        }
+
+        setInterval(changeImage, 5000); // Change image every 3 seconds (3000 milliseconds)
+    </script>
+
+
+
+
+
+   <style>
         .flex-container {
             display: flex;
             justify-content: space-around;
